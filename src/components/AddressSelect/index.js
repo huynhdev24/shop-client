@@ -19,10 +19,11 @@ function AddressSelect({ onChange }) {
 
   useEffect(() => {
     const fetchProvince = async () => {
-      const result = await fetch("https://online-gateway.ghn.vn/shiip/public-api/master-data/province", {
+      const result = await fetch("https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province", {
         method: "GET",
         headers: {
-          'token': process.env.REACT_APP_GHN_TOKEN,
+          // 'token': process.env.REACT_APP_GHN_TOKEN,
+          'token': 'd7a71810-a2ee-11ed-8183-12cf3da973bf',
         },
       });
       const { data } = await result.json();
@@ -41,10 +42,11 @@ function AddressSelect({ onChange }) {
 
   useEffect(() => {
     const fetchDistrict = async () => {
-      const result = await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${province?.provinceId}`, {
+      const result = await fetch(`https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${province?.provinceId}`, {
         method: "GET",
         headers: {
-          'token': process.env.REACT_APP_GHN_TOKEN,
+          // 'token': process.env.REACT_APP_GHN_TOKEN,
+          'token': 'd7a71810-a2ee-11ed-8183-12cf3da973bf',
         },
       });
       const { data } = await result.json();
@@ -63,10 +65,11 @@ function AddressSelect({ onChange }) {
 
   useEffect(() => {
     const fetchWard = async () => {
-      const result = await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${district?.districtId}`, {
+      const result = await fetch(`https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${district?.districtId}`, {
         method: "GET",
         headers: {
-          'token': process.env.REACT_APP_GHN_TOKEN,
+          // 'token': process.env.REACT_APP_GHN_TOKEN,
+          'token': 'd7a71810-a2ee-11ed-8183-12cf3da973bf',
         },
       });
       const { data } = await result.json();
