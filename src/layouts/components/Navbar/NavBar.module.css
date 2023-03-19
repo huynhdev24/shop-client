@@ -16,11 +16,11 @@
 
 
 .navItem a:hover {
-    color: #539E31;
+    color: #0b74e5;
 }
 
 .navItem a.active {
-    background-color: #539E31;
+    background-color: #0b74e5;
     color: white;
     border-radius: 4px;
 }
@@ -64,7 +64,7 @@
     .navbarMobile .menu {
         flex-direction: column;
     }
-   
+
     .navbarMobile .menu.active {
         transform: translateX(0);
     }
