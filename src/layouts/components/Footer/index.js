@@ -1,9 +1,8 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import { IoPaperPlane, IoLogoFacebook, IoLogoYoutube, IoLogoInstagram } from "react-icons/io5";
-
 import styles from "./Footer.module.css";
+
 function Footer() {
   return (
     <footer className={styles.footer}>
@@ -11,9 +10,9 @@ function Footer() {
         <Row>
           <Col xl={3} xs={12}>
             <div className={styles.footerGroup}>
-              <Link to='/'><h1 className={`${styles.bookstoreHighlight} me-5`}>BookStore</h1></Link>
-              <p>Khu phố 6, phường Linh Trung, TP Thủ Đức, TP HCM</p>
-              <p>bookstore@gmail.com</p>
+              <Link to='/'><h1 className={`${styles.bookstoreHighlight} me-5`}>SmartShop</h1></Link>
+              <p>Dĩ An, Bình Dương</p>
+              <p>huynh.it.24@gmail.com</p>
             </div>
           </Col>
           <Col xl={6} xs={12}>
