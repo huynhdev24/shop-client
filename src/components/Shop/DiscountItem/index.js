@@ -3,7 +3,7 @@ import { AiFillCopy, AiOutlineShoppingCart } from "react-icons/ai";
 import moment from "moment";
 import styles from "./DiscountItem.module.css";
 import format from "../../../helper/format";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/images/voucher.png";
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from "react-redux";
 import { updateVoucher } from "../../../redux/actions/cart";

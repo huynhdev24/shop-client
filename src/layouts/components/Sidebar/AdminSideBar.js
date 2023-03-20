@@ -7,6 +7,7 @@ import authApi from "../../../api/authApi";
 import { logout } from '../../../redux/actions/auth';
 import { destroy } from "../../../redux/actions/cart"
 import styles from "./AdminSideBar.module.css";
+// import { RiAccountPinCircleFill } from 'react-icons/ri';
 
 
 function AdminSideBar() {
@@ -34,14 +35,18 @@ function AdminSideBar() {
             src={logo}
             alt=""
           />
-          <span>BookStore</span>
+          <span>SmartShop</span>
         </Link>
       </div>
       <div className={styles.sidebarContainer}>
         <ul className={styles.navList}>
           {routes.map((item, index) => {
               if (item?.permissions.includes(role)) {
-                  return <SubMenu item={item} key={index} />
+                  return (
+                    <>
+                      <SubMenu item={item} key={index} ></SubMenu>
+                    </>
+                  )
               } else return null;
           })}
         </ul>
