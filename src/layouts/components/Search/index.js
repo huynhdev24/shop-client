@@ -3,12 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { BsSearch } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { Spinner } from "react-bootstrap";
-
 import SearchResultItem from "./SearchResultItem.js";
 import useDebounce from "../../../hooks/useDebounce"
-
 import bookApi from "../../../api/bookApi"
-
 import styles from "./Search.module.css"
 
 function Search() {

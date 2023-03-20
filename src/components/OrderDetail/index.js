@@ -13,8 +13,8 @@ export default function OrderDetail({ data }) {
       <div>
         <div className="d-flex">
           <div>
-            <h4>BOOKSTORE</h4>
-            <p>Khu phố 6, P.Linh Trung, Tp.Thủ Đức, Tp.Hồ Chí Minh</p>
+            <h4>SmartShop</h4>
+            <p>TP. Dĩ An, Bình Dương</p>
           </div>
           <div style={{ marginLeft: "auto", minWidth: 330 }}>
             <p>

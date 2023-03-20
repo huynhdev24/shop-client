@@ -4,22 +4,19 @@ import { Modal, Button } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import axios from "axios";
-
 import PreviewImage from  "../../../components/PreviewImage"
-
 import { updateAvatar } from "../../../redux/actions/auth"
 import userApi from "../../../api/userApi";
-
 import styles from "./AccountSideBar.module.css";
+import { FaAddressCard, FaFileInvoiceDollar } from 'react-icons/fa';
+import { RiAccountPinCircleFill } from 'react-icons/ri';
 
 function AccountSideBar() {
+
   const dispatch = useDispatch();
-
   const [file, setFile] = useState({});
-
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const { userId, fullName, avatar } = useSelector((state) => state.auth);
 
   const handleSubmit = async (e) => {
@@ -27,7 +24,6 @@ function AccountSideBar() {
     if (!["image/png", "image/gif", "image/jpeg"].includes(file?.type)) {
       return toast.info("File không đúng định dạng!", { autoClose: 2000 });
     }
-
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -93,6 +89,7 @@ function AccountSideBar() {
             }
             to="/tai-khoan"
           >
+            <RiAccountPinCircleFill style={{marginRight: "3"}}></RiAccountPinCircleFill>
             Thông tin tài khoản
           </NavLink>
         </li>
@@ -103,6 +100,7 @@ function AccountSideBar() {
             }
             to="/don-hang"
           >
+            <FaFileInvoiceDollar style={{marginRight: "10"}}></FaFileInvoiceDollar>
             Đơn hàng
           </NavLink>
         </li>
@@ -113,6 +111,7 @@ function AccountSideBar() {
             }
             to="/dia-chi"
           >
+            <FaAddressCard style={{marginRight: "10"}}></FaAddressCard>
             Địa chỉ
           </NavLink>
         </li>

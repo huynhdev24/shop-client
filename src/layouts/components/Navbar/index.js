@@ -1,10 +1,8 @@
 import { memo, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import { FaBars, FaTimes } from 'react-icons/fa';
-
-
 import styles from './NavBar.module.css';
+
 function NavBar() {
     return (
         <div className={`navbar ${styles.navbar}`}>
@@ -19,7 +17,6 @@ function NavBar() {
             </div>
         </div>
     )
-
 }
 
 export function NavBarMobile() {
@@ -44,4 +41,4 @@ export function NavBarMobile() {
     )
 }
 
-export default memo(NavBar)
+export default memo(NavBar);

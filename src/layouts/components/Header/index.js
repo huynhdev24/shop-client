@@ -1,24 +1,18 @@
 import { memo } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-
-
 import { Container } from 'react-bootstrap';
 import { BsPerson, BsCart2 } from "react-icons/bs";
-
 import NavBar, { NavBarMobile } from "../NavBar";
 import Search from "../Search";
-
 import authApi from "../../../api/authApi";
 import { logout } from '../../../redux/actions/auth';
 import { destroy } from '../../../redux/actions/cart';
-
 import styles from './Header.module.css';
 
 function Header() {
 
   console.log('header Render')
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const currentUser = useSelector((state) => state.auth)
@@ -43,12 +37,11 @@ function Header() {
           <Container>
             <div className={styles.headerRow}>
               <NavBarMobile />
-              <Link to='/' ><h1 className={`${styles.bookstoreHighlight} me-5`}>BookStore</h1></Link>
+              <Link to='/' ><h1 className={`${styles.bookstoreHighlight} me-5`}>SmartShop</h1></Link>
               <div className={styles.search}>
                 <Search />
               </div>
               <NavBar />
-
               <div className={`${styles.headerCenterRight} d-flex`}>
                 <div className={styles.headerIcon}>
                   {
@@ -59,12 +52,12 @@ function Header() {
                       <div className={styles.accountPopup}>
                           {currentUser.role === 0 && (
                             <>
-                              <div className={styles.item}><Link className={styles.popupLink} to="/tai-khoan">Tài khoản của tôi</Link></div>
+                              <div className={styles.item}><Link className={styles.popupLink} to="/tai-khoan">Thông tin tài khoản</Link></div>
                             </>
                           )}
                           {currentUser.role > 0 && (
                             <>
-                              <div className={styles.item}><Link className={styles.popupLink} to="/admin">Quản lý BookStore</Link></div>
+                              <div className={styles.item}><Link className={styles.popupLink} to="/admin">Quản lý SmartShop</Link></div>
                             </>
                           )}
                           <div className={styles.item}><p className={styles.popupLink} onClick={handleLogout} to="">Đăng xuất</p></div>
@@ -81,10 +74,8 @@ function Header() {
                   </Link>
                 </div>
               </div>
-
             </div>
           </Container>
-
       </div>
       <div className={styles.searchMobile}>
         <Container>
