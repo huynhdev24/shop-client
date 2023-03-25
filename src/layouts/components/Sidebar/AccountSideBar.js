@@ -32,7 +32,7 @@ function AccountSideBar() {
       const {
         data: { secure_url, public_id },
       } = await axios.post(
-        "https://api.cloudinary.com/v1_1/dbynglvwk/image/upload",
+        "https://api.cloudinary.com/v1_1/djpmhnwps/image/upload",
         formData
       );
       if (secure_url && public_id) {

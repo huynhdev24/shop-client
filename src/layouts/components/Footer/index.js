@@ -12,7 +12,7 @@ function Footer() {
             <div className={styles.footerGroup}>
               <Link to='/'><h1 className={`${styles.bookstoreHighlight} me-5`}>SmartShop</h1></Link>
               <p>Dĩ An, Bình Dương</p>
-              <p>huynh.it.24@gmail.com</p>
+              <p>huynh.dev.24@gmail.com</p>
             </div>
           </Col>
           <Col xl={6} xs={12}>
