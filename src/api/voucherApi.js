@@ -1,7 +1,6 @@
 import axiosClient from "./axiosClient"
 
 const voucherApi = {
-
     getAll: ({page, limit, sortByDate, valid}) => {
         const url = 'vouchers/'
         return axiosClient.get(url, { params: {page, limit, sortByDate, valid}})
@@ -26,7 +25,6 @@ const voucherApi = {
         const url = `vouchers/${id}`
         return axiosClient.delete(url)
     }
-
 }
 
 export default voucherApi
