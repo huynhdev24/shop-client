@@ -115,6 +115,17 @@ function AccountSideBar() {
             Địa chỉ
           </NavLink>
         </li>
+        <li className={styles.navItem}>
+          <NavLink
+            className={({ isActive }) =>
+              [styles.navLink, isActive ? styles.active : null].join(" ")
+            }
+            to="/lich-su-nguoi-dung"
+          >
+            <FaAddressCard style={{marginRight: "10"}}></FaAddressCard>
+            Lịch sử người dùng
+          </NavLink>
+        </li>
       </ul>
     </div>
   );

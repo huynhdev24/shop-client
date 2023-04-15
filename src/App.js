@@ -31,6 +31,7 @@ import Search from "./pages/Search";
 import Profile from "./pages/Account/Profile";
 import Order from "./pages/Account/Order";
 import Address from "./pages/Account/Address";
+import History from "./pages/Account/History";
 
 // Admin
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -136,6 +137,7 @@ function App() {
                   <Route path="don-hang" element={<Order />} />
                   <Route path="tai-khoan" element={<Profile />} />
                   <Route path="dia-chi" element={<Address />} />
+                  <Route path="lich-su-nguoi-dung" element={<History />} />
                 </Route>
               </Route>
             </Route>
