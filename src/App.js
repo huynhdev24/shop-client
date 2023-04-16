@@ -75,6 +75,7 @@ function App() {
         dispatch(login({email, fullName, phoneNumber, avatar, userId: _id, role}))
       } catch (error) {
         if (error.response.status === 403 || error.response.status === 401) {
+          console.log(error);
           localStorage.removeItem('accessToken')
           dispatch(logout())
         }

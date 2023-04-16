@@ -14,7 +14,7 @@ function Home() {
       try {
         const { data } = await bookApi.getAll({page: 1, limit: 12})
         // const { data } = await bookApi.getAll()
-
+        console.log(data);
         setBooks(data)
       } catch (error) {
         console.log(error)
@@ -31,10 +31,9 @@ function Home() {
           <div className={styles.title}>
             <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
           </div>
-          {/* begin AI Đề xuất sản phẩm*/}
           <Row style={{marginLeft: '16px', marginTop: '20px' , marginBottom: '15px'}}>
             <Col xl={4}>
-              {/* <div className={styles.orderItem}> */}
+              <div className={styles.orderItem}>
               <div>
                 <label htmlFor="ai-recommender" style={{marginBottom: '5px'}}>Chọn cách đề xuất - AI:</label>
                 <select
@@ -52,7 +51,6 @@ function Home() {
               </div>
             </Col>
           </Row>
-          {/* end AI Đề xuất sản phẩm */}
           <Row className={styles.row}>
             {books && books.length > 0 ? (
                books.map(book => 
