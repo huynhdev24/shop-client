@@ -1,11 +1,15 @@
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 // const BASE_URL = "http://localhost:5000/api/v1/"
-import { toast } from 'react-toastify';
+// const BASE_URL = "http://localhost:5000/api/v1/"
+
+// import { toast } from 'react-toastify';
 
 const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
   // baseURL: "http://localhost:5000/api/v1/",
+  // baseURL: "http://localhost:5000/api/v1/",
+
   headers: {
     "Content-Type": "application/json",
   },
@@ -15,6 +19,8 @@ const axiosClient = axios.create({
 const jwtAxios = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
   // baseURL: "http://localhost:5000/api/v1/",
+  // baseURL: "http://localhost:5000/api/v1/",
+
   headers: {
     "Content-Type": "application/json",
   },
@@ -50,7 +56,7 @@ axiosClient.interceptors.request.use(async (config) => {
 axiosClient.interceptors.response.use(
   (res) => res.data, 
   (error) => {
-  toast.error(error.response.data.message, { autoClose: 2000 })
+  // toast.error(error.response.data.message, { autoClose: 2000 })
   return Promise.reject(error)
 })
 

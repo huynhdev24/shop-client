@@ -33,7 +33,7 @@ function Home() {
           </div>
           <Row style={{marginLeft: '16px', marginTop: '20px' , marginBottom: '15px'}}>
             <Col xl={4}>
-              <div className={styles.orderItem}>
+              {/* <div className={styles.orderItem}> */}
               <div>
                 <label htmlFor="ai-recommender" style={{marginBottom: '5px'}}>Chọn cách đề xuất - AI:</label>
                 <select
