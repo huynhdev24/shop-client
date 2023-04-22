@@ -100,7 +100,7 @@ const DiscountItem = ({ item }) => {
               <AiFillCopy />
               {!copied ? "Copy" : "Đã copy"}
             </button>
-            <button onClick={() => handleUseNow(item)}>
+            <button onClick={() => handleUseNow(item)} style={{backgroundColor: 'blue'}}>
               <AiOutlineShoppingCart />
               Dùng ngay
             </button>

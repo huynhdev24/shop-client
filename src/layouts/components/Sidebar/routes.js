@@ -47,4 +47,9 @@ export const routes = [
     path: '/admin/staff',
     permissions: [roleEnum.Admin]
   },
+  {
+    title: '✍ Lịch sử',
+    path: '/admin/history',
+    permissions: [roleEnum.Admin]
+  },
 ];

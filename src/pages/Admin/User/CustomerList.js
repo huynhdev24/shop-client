@@ -173,7 +173,7 @@ export default function CustomerList() {
           <div className="admin-content-header">Danh sách khách hàng</div>
           <div className="admin-content-action">
             <div className="d-flex">
-              <input className="form-control search" placeholder="Tìm kiếm bằng tên, email, SĐT" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
+              <input className="form-control search" placeholder="Tìm kiếm bằng tên, email, SĐT ..." style={{width: '300px'}} value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
               <Button type="button" style={{color: "white"}} variant="info"
                 onClick={() => {
                   setSearchString(searchInput)

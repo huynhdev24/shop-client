@@ -3,6 +3,7 @@ import { Breadcrumb, Container, NavLink } from "react-bootstrap";
 import Loading from "../../components/Loading"
 import DiscountItem from "../../components/Shop/DiscountItem";
 import voucherApi from "../../api/voucherApi";
+// import { Row, Col } from "react-bootstrap";
 
 export default function Discount() {
   const [voucherData, setVoucherData] = useState([])

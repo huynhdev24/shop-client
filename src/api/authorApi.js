@@ -1,7 +1,6 @@
 import axiosClient from "./axiosClient"
 
 const authorApi = {
-
     getAll: ({page, limit, sortByDate}) => {
         const url = 'authors/'
         return axiosClient.get(url, { params: {page, limit, sortByDate}})
@@ -22,7 +21,6 @@ const authorApi = {
         const url = `authors/${id}`
         return axiosClient.delete(url)
     }
-
 }
 
 export default authorApi

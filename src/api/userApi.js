@@ -49,7 +49,6 @@ const userApi = {
         const url = `users/${id}/address/${addressId}`
         return axiosClient.delete(url)
     },
-
 }
 
 export default userApi
