@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 // import { toast } from 'react-toastify';
 import PaginationBookStore from "../../../../components/PaginationBookStore";
 import { FaEdit, FaTrashAlt, FaSearch } from "react-icons/fa"
-
+import moment from 'moment'; // xử lý ngày tháng
 
 import { Row, Col, Table, Spinner, Modal, Button } from "react-bootstrap";
 import historyApi from "../../../../api/historyApi";
@@ -108,7 +108,7 @@ function HistoryList() {
                   <th>STT</th>
                   <th>Hoạt động</th>
                   <th>Kiểu</th>
-                  {/* <th>Tiêu đề</th> */}
+                  <th>Ngày</th>
                   <th>Liên kết</th>
                   <th colSpan="2">Hành động</th>
                 </tr>
@@ -134,9 +134,12 @@ function HistoryList() {
                         <td>
                           {item.type}
                         </td>
-                        {/* <td>
-                          {item.title}
-                        </td> */}
+                        <td>
+                          <p>{moment(item?.createdAt).format('DD-MM-yyyy HH:mm:ss')}</p>
+                          {moment(item.createdAt).isSame(moment(), 'day') && (
+                             <span style={{backgroundColor: "#ff709e"}} className="badge">{moment(item?.createdAt).fromNow()}</span>
+                          )}
+                        </td>
                         <td>{item.link}</td>
                         <td>
                           <Link
