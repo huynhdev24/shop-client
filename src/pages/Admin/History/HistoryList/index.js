@@ -111,6 +111,7 @@ function HistoryList() {
                   <th>Ghi chú</th>
                   <th>Ngày</th>
                   <th>Liên kết</th>
+                  <th>User</th>
                   <th colSpan="2">Hành động</th>
                 </tr>
               </thead>
@@ -145,6 +146,7 @@ function HistoryList() {
                           )}
                         </td>
                         <td>{item.link}</td>
+                        <td>{item.user}</td>
                         <td>
                           <Link
                             to={`/admin/history/update/${item._id}`}
