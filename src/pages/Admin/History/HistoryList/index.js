@@ -108,6 +108,7 @@ function HistoryList() {
                   <th>STT</th>
                   <th>Hoạt động</th>
                   <th>Kiểu</th>
+                  <th>Ghi chú</th>
                   <th>Ngày</th>
                   <th>Liên kết</th>
                   <th colSpan="2">Hành động</th>
@@ -133,6 +134,9 @@ function HistoryList() {
                         </td>
                         <td>
                           {item.type}
+                        </td>
+                        <td>
+                          {item.title}
                         </td>
                         <td>
                           <p>{moment(item?.createdAt).format('DD-MM-yyyy HH:mm:ss')}</p>
