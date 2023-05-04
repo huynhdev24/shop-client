@@ -14,6 +14,9 @@ import { useDispatch, useSelector } from "react-redux"
 import format from "../../helper/format";
 import styles from './ProductDetail.module.css'
 
+//history
+import historyApi from '../../api/historyApi';
+
 export default function ProductDetail() {
 
   const dispatch = useDispatch()
@@ -90,6 +93,13 @@ export default function ProductDetail() {
   }
 
   const handleAddToCart = () => {
+
+    // try {
+    //   handleSubmitAdd();
+    // } catch (ex) {
+    //   console.log("Lỗi lưu lại lịch sử - Chi tiết lỗi: " + ex.toString());
+    // }
+
     if (currentUser && currentUser.userId) {
       const { _id: productId, name, imageUrl, slug, price, discount } = bookData
       let newPrice = price
@@ -107,6 +117,13 @@ export default function ProductDetail() {
   }
 
   const handleBuyNow = () => {
+
+    // try {
+    //     handleSubmitAdd();
+    // } catch (ex) {
+    //   console.log("Lỗi lưu lại lịch sử - Chi tiết lỗi: " + ex.toString());
+    // }
+    
     if (currentUser && currentUser.userId) {
       const { _id: productId, name, imageUrl, slug, price, discount } = bookData
       let newPrice = price
@@ -122,6 +139,27 @@ export default function ProductDetail() {
       toast.info('Vui lòng đăng nhập để thực hiện!', {autoClose: 2000})
     }
   }
+
+  //handle click để lưu lại lịch sử
+  const { userId } = useSelector((state) => state.auth);
+  const [addHistory, setAddHistory] = useState({
+    action: 'Đặt sách' + bookData.name,
+    type: 'Đặt sách',
+    title: 'Đặt sách tại SmartShop',
+    link: 'http://localhost:3000/chi-tiet-san-pham/' + bookData.slug,
+    user: userId
+  })
+
+  const handleSubmitAdd = async (e) => {
+    e.preventDefault()
+    try {
+      await historyApi.create(addHistory)
+    } catch (error) {
+      setAddHistory()
+      console.log(error);
+    }
+  }
+  //end
 
   return (
     <div className="main">
@@ -181,7 +219,7 @@ export default function ProductDetail() {
                       Yêu thích
                     </button>
 
-                    <div className={styles.actions_bottom}>
+                    <div className={styles.actions_bottom} onClick={handleSubmitAdd}>
                       <button className={styles.addToCartBtn} onClick={handleAddToCart}>
                         <AiOutlineShoppingCart className={styles.addToCartIcon} />
                         Thêm vào giỏ hàng
