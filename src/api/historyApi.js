@@ -1,9 +1,9 @@
 import axiosClient from "./axiosClient"
 
 const historyApi = {
-    getAll: ({page = 1, limit, sort = { createdAt: -1 }, query = null}) => {
+    getAll: ({page = 1, limit, sort = { createdAt: -1 }, userId}) => {
         const url = 'history/'
-        return axiosClient.get(url, { params: {page, limit, sort, query}})
+        return axiosClient.get(url, { params: {page, limit, sort, userId}})
     },
     getById: (id) => {
         const url = `history/${id}`
