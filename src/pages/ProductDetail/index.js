@@ -30,6 +30,8 @@ export default function ProductDetail() {
   const [bookData, setBookData] = useState({})
   const [loading, setLoading] = useState(false)
 
+  let bookDataName = '';
+
   useEffect(() => {
     const addToCart = async() => {
       try {
@@ -53,6 +55,8 @@ export default function ProductDetail() {
         setLoading(true)
         const res = await bookApi.getBySlug(slug);
         setLoading(false)
+        // eslint-disable-next-line
+        bookDataName = res.data.name;
         setBookData(res.data)
       } catch (error) {
         setLoading(false)
@@ -94,12 +98,6 @@ export default function ProductDetail() {
 
   const handleAddToCart = () => {
 
-    // try {
-    //   handleSubmitAdd();
-    // } catch (ex) {
-    //   console.log("Lỗi lưu lại lịch sử - Chi tiết lỗi: " + ex.toString());
-    // }
-
     if (currentUser && currentUser.userId) {
       const { _id: productId, name, imageUrl, slug, price, discount } = bookData
       let newPrice = price
@@ -117,12 +115,6 @@ export default function ProductDetail() {
   }
 
   const handleBuyNow = () => {
-
-    // try {
-    //     handleSubmitAdd();
-    // } catch (ex) {
-    //   console.log("Lỗi lưu lại lịch sử - Chi tiết lỗi: " + ex.toString());
-    // }
     
     if (currentUser && currentUser.userId) {
       const { _id: productId, name, imageUrl, slug, price, discount } = bookData
@@ -140,22 +132,41 @@ export default function ProductDetail() {
     }
   }
 
-  //handle click để lưu lại lịch sử
+  //Add History click to cart or checkout
   const { userId } = useSelector((state) => state.auth);
-  const [addHistory, setAddHistory] = useState({
-    action: 'Đặt sách' + bookData.name,
-    type: 'Đặt sách',
-    title: 'Đặt sách tại SmartShop',
-    link: 'http://localhost:3000/chi-tiet-san-pham/' + bookData.slug,
+  const [addHistoryCart, setAddHistoryCart] = useState({
+    action: 'Thêm sách vào giỏ hàng ' + bookDataName,
+    type: 'Thêm giỏ hàng',
+    title: 'Lịch sử thêm vào giỏ hàng',
+    link: 'http://localhost:3000/chi-tiet-san-pham/' + slug,
     user: userId
-  })
+  });
+  const [addHistoryCheckout, setAddHistoryCheckout] = useState({
+    action: 'Đặt sách' + bookDataName,
+    type: 'Đặt sách muốn thanh toán',
+    title: 'Lịch sử đặt sách',
+    link: 'http://localhost:3000/chi-tiet-san-pham/' + slug,
+    user: userId
+  });
 
-  const handleSubmitAdd = async (e) => {
+  const HandleSubmitAddHistory_Cart = async (e, bookData) => {
     e.preventDefault()
+    
     try {
-      await historyApi.create(addHistory)
+      await historyApi.create(addHistoryCart)
     } catch (error) {
-      setAddHistory()
+      setAddHistoryCart({});
+      console.log(error);
+    }
+  }
+
+  const HandleSubmitAddHistory_Checkout = async (e, bookData) => {
+    e.preventDefault()
+    
+    try {
+      await historyApi.create(addHistoryCheckout)
+    } catch (error) {
+      setAddHistoryCheckout({});
       console.log(error);
     }
   }
@@ -219,12 +230,16 @@ export default function ProductDetail() {
                       Yêu thích
                     </button>
 
-                    <div className={styles.actions_bottom} onClick={handleSubmitAdd}>
-                      <button className={styles.addToCartBtn} onClick={handleAddToCart}>
-                        <AiOutlineShoppingCart className={styles.addToCartIcon} />
-                        Thêm vào giỏ hàng
-                      </button>
-                      <button className={styles.buyBtn} onClick={handleBuyNow}>Mua ngay</button>
+                    <div className={styles.actions_bottom}>
+                      <div onClick={ (e,bookData) => HandleSubmitAddHistory_Cart(e,bookData) }>
+                        <button className={styles.addToCartBtn} onClick={handleAddToCart}>
+                          <AiOutlineShoppingCart className={styles.addToCartIcon} />
+                          Thêm vào giỏ hàng
+                        </button>
+                      </div>
+                      <div onClick={ (e,bookData) => HandleSubmitAddHistory_Checkout(e,bookData) }>
+                        <button className={styles.buyBtn} onClick={handleBuyNow}>Mua ngay</button>
+                      </div>
                     </div>
                   </div>
                 </div>
