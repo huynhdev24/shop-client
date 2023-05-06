@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
 import styles from './Auth.module.css';
-const faceio = new faceIO('app-public-id');
+const faceioInstance = new faceIO('9fde8dac01043a497388b3546e843ac0');
 function Login() {
 
   const [email, setEmail] = useState("")
@@ -107,27 +107,6 @@ function Login() {
   }
   
   //Login with FaceID
-  let faceioInstance = null;
-
-  useEffect(() => {
-    const faceIoScript = document.createElement('script')
-    faceIoScript.src = '//cdn.faceio.net/fio.js'
-    faceIoScript.async = true
-    faceIoScript.onload = () => faceIoScriptLoaded()
-    document.body.appendChild(faceIoScript)
-
-    return () => {
-      document.body.removeChild(faceIoScript)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const faceIoScriptLoaded = () => {
-    console.log(faceIO)
-    if (faceIO && !faceioInstance) {
-      faceioInstance = new faceIO('9fde8dac01043a497388b3546e843ac0')
-    }
-  }
 
   // Đăng ký khuôn mặt mới vào hệ thống
   const faceRegistration = async () => {
