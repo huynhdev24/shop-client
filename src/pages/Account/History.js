@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Row, Col, Table, Spinner } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 import PaginationBookStore from "../../components/PaginationBookStore";
 import moment from "moment";
 import historyApi from "../../api/historyApi";
@@ -83,9 +83,11 @@ export default function History() {
                       {moment(item?.createdAt).format("DD-MM-yyyy HH:mm:ss")}
                     </td>
                     <td>
-                        <p>
-                            {item.link}
-                        </p>
+                        <Link to={item.link}>
+                          <p>
+                              {item.link}
+                          </p>
+                        </Link>
                     </td>
                   </tr>
                 );
