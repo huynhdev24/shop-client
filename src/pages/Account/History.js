@@ -1,29 +1,17 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { Row, Col, Table, Spinner, Badge, Button } from "react-bootstrap";
+import { Row, Col, Table, Spinner } from "react-bootstrap";
 
-import { FaEye } from "react-icons/fa";
 import PaginationBookStore from "../../components/PaginationBookStore";
-import format from "../../helper/format";
 import moment from "moment";
-import { v4 as uuidv4 } from 'uuid';
-
-import methodData from "../Checkout/methodData"
-import steps from "../../components/OrderProgress/enum";
 import historyApi from "../../api/historyApi";
 
 export default function History() {
   const { userId } = useSelector((state) => state.auth);
-
+  console.log(userId);
   const [historyData, setHistoryData] = useState([]);
-  const [historyDetail, setHistoryDetail] = useState({});
   const [page, setPage] = useState(1);
-  
   const [loading, setLoading] = useState(false);
-  const [loadingHistory, setLoadingHistory] = useState(false);
-  
-  const [selectedHistory, setSelectedHistory] = useState({})
-
 
   const handleChangePage = useCallback((page) => {
     setPage(page);
