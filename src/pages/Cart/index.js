@@ -104,6 +104,17 @@ function Cart() {
     }
   }
 
+  const deleteToCart = async() => {
+    try {
+      let { list } = cartData;
+      list.length = 0;
+      await userApi.updateCart(currentUser.userId, {cart: list})
+    } catch (error) {
+      console.log(error)
+    }
+    navigate({pathname: "/"})
+  }
+
   return (
     <div className="main">
       <Container>
@@ -169,6 +180,9 @@ function Cart() {
                     Tiến hành thanh toán
                   </button>
                 </Link>
+                <button style={{backgroundColor: 'red'}} className={styles.btnCheckout} onClick={deleteToCart}>
+                    Xóa giỏ hàng
+                </button>
               </div>
             </Col>
           </Row>
