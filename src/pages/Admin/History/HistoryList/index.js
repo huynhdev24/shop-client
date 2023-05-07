@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 // import { toast } from 'react-toastify';
 import PaginationBookStore from "../../../../components/PaginationBookStore";
-import { FaEdit, FaTrashAlt, FaSearch } from "react-icons/fa"
+import { FaTrashAlt, FaSearch } from "react-icons/fa"
 import moment from 'moment'; // xử lý ngày tháng
 
 import { Row, Col, Table, Spinner, Modal, Button } from "react-bootstrap";
 import historyApi from "../../../../api/historyApi";
-import format from "../../../../helper/format";
+// import format from "../../../../helper/format";
 
 function HistoryList() {
   const [historyData, setHistoryData] = useState({});
@@ -46,36 +46,30 @@ function HistoryList() {
     setPage(page);
   }, []);
 
-  // const handleCallApiDelete = async (e) => {
-  //   try {
-  //     const { data: orders } = await bookApi.checkIsOrdered(bookDelete._id)
-  //     if (orders.length > 0) {
-  //       toast.error('Sản phẩm đã được mua, không thể xóa!', {autoClose: 2000})
-  //       return
-  //     }
-  //     await bookApi.delete(bookDelete._id)
-  //     toast.success("Xóa thành công!", {autoClose: 2000})
-  //     setShowModal(false)
-  //     setBookData((preState) => {
-  //       const newArray = [...preState.books];
-  //       return {
-  //         ...preState,
-  //         books: newArray.filter((item) => item._id !== bookDelete._id)
-  //       }
-  //     });
-  //   } catch (error) {
-  //     alert("Xóa thất bại!")
-  //     setShowModal(false)
-  //   }
-  // }
+  const handleCallApiDelete = async (e) => {
+    try {
+      await historyApi.delete(historyDelete._id)
+      setShowModal(false)
+      setHistoryData((preState) => {
+        const newArray = [...preState.history];
+        return {
+          ...preState,
+          history: newArray.filter((item) => item._id !== historyDelete._id)
+        }
+      });
+    } catch (error) {
+      alert("Xóa thất bại!")
+      setShowModal(false)
+    }
+  }
 
   return (
     <Row>
-      {/* <Modal size="lg" show={showModal} onHide={() => setShowModal(false)}>
+      <Modal size="lg" show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Xóa lịch sử</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Bạn có chắc xóa lịch sử <b>{bookDelete && bookDelete?.name}</b> này không?</Modal.Body>
+        <Modal.Body>Bạn có chắc xóa lịch sử <b>{historyDelete && historyDelete?.name}</b> này không?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Hủy
@@ -84,7 +78,7 @@ function HistoryList() {
             Xóa
           </Button>
         </Modal.Footer>
-      </Modal> */}
+      </Modal>
       <Col xl={12}>
         <div className="admin-content-wrapper">
           <div className="admin-content-header">Lịch sử Hệ thống</div>
@@ -111,7 +105,7 @@ function HistoryList() {
                   <th>Ghi chú</th>
                   <th>Ngày</th>
                   <th>Liên kết</th>
-                  <th>User</th>
+                  <th>UserID</th>
                   <th colSpan="2">Hành động</th>
                 </tr>
               </thead>
@@ -145,17 +139,14 @@ function HistoryList() {
                              <span style={{backgroundColor: "#ff709e"}} className="badge">{moment(item?.createdAt).fromNow()}</span>
                           )}
                         </td>
-                        <td>{item.link}</td>
-                        <td>{item.user}</td>
                         <td>
-                          <Link
-                            to={`/admin/history/update/${item._id}`}
-                            className="btn btn-warning"
-                            data-id={item._id}
-                          >
-                            <FaEdit />
+                          <Link to={item.link}>
+                            <p>
+                                {item.link}
+                            </p>
                           </Link>
                         </td>
+                        <td>{item.user}</td>
                         <td>
                           <button
                             className="btn btn-danger"
