@@ -63,6 +63,21 @@ function HistoryList() {
     }
   }
 
+  // const handleCallApiDeleteAll = async (e) => {
+  //   try {
+  //     await historyApi.delete(historyDelete._id)
+  //     setHistoryData((preState) => {
+  //       const newArray = [...preState.history];
+  //       return {
+  //         ...preState,
+  //         history: newArray.filter((item) => item._id !== historyDelete._id)
+  //       }
+  //     });
+  //   } catch (error) {
+  //     alert("Xóa thất bại!")
+  //   }
+  // }
+
   return (
     <Row>
       <Modal size="lg" show={showModal} onHide={() => setShowModal(false)}>
@@ -93,6 +108,13 @@ function HistoryList() {
                 >
                   <FaSearch />
               </Button>
+              {/* <Button type="button" style={{color: "white"}} variant="info"
+                onClick={() => {
+                  handleCallApiDeleteAll()
+                }}
+                >
+                  <FaTrashAlt />
+              </Button> */}
             </div>
           </div>
           <div className="admin-content-body">
