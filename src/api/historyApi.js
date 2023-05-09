@@ -20,7 +20,11 @@ const historyApi = {
     delete: (id) => {
         const url = `history/${id}`
         return axiosClient.delete(url)
-    }
+    },
+    getSearch: ({page = 1, limit, sort = { createdAt: -1 }, query}) => {
+        const url = 'history/searchstring'
+        return axiosClient.get(url, { params: {page, limit, sort, query}})
+    },
 }
 
 export default historyApi;

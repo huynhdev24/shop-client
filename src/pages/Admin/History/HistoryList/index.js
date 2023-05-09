@@ -27,9 +27,10 @@ function HistoryList() {
       try {
         setLoading(true);
         const query = {
-          name: { "$regex": searchString, "$options": "$i" }
+          action: { "$regex": searchString, "$options": "$i" }
         }
-        const res = await historyApi.getAll({ query, page: page, limit: 5 });
+        const res = await historyApi.getAll({ query, page: page, limit: 10 });
+        console.log(res.data);
         console.log('history list: ' + JSON.stringify(res));
         setLoading(false);
         setHistoryData({ history: res.data, totalPage: res.pagination.totalPage });
