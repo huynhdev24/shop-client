@@ -17,6 +17,10 @@ import styles from './ProductDetail.module.css'
 //history
 import historyApi from '../../api/historyApi';
 
+//rating
+import StarRatings from 'react-star-ratings';
+import ratingApi from '../../api/ratingApi';
+
 export default function ProductDetail() {
 
   const dispatch = useDispatch()
@@ -172,6 +176,32 @@ export default function ProductDetail() {
   }
   //end
 
+  //rating
+  const [ratingData, setRatingData] = useState(3)
+  const changeRating = async (newRating, name) => {
+    setRatingData(newRating);
+    await ratingApi.create({user: currentUser.userId, product: bookData._id, rating: newRating})
+  }
+  // const [ratingVoteData, setRatingVoteData] = useState({})
+  // const HandleSubmitAddRating = async (ratingVoteData) => {    
+  //   try {
+  //     setRatingVoteData({
+  //       user: currentUser.userId,
+  //       product: bookData._id,
+  //       rating: ratingData
+  //     })
+  //     await ratingApi.create(ratingVoteData)
+  //   } catch (error) {
+  //     setRatingVoteData({
+  //       user: currentUser.userId,
+  //       product: bookData._id,
+  //       rating: ratingData
+  //     })
+  //     console.log(error);
+  //   }
+  // }
+  //end
+
   return (
     <div className="main">
       <Container>
@@ -225,10 +255,25 @@ export default function ProductDetail() {
                   </div>
 
                   <div className={styles.actions}>
-                    <button className={styles.fav_btn} onClick={handleFav}>
-                      {fav ? <AiFillHeart className={styles.fav_icon} /> : <AiOutlineHeart className={styles.fav_icon}/> }
-                      Yêu thích
-                    </button>
+                      <button className={styles.fav_btn} onClick={handleFav}>
+                        {fav ? <AiFillHeart className={styles.fav_icon} /> : <AiOutlineHeart className={styles.fav_icon}/> }
+                        Yêu thích
+                      </button>
+                      <div style={{marginTop: '16px', marginBottom: '16px', fontSize: '20px'}}>
+                        <p>Đánh giá: {ratingData} ⭐</p>
+                        <StarRatings
+                          rating={ratingData}
+                          starRatedColor="orange"
+                          changeRating={changeRating}
+                          numberOfStars={5}
+                          name='rating'
+                          starDimension='28px'
+                          styles={{marginTop: '24px'}}
+                          // onClick={HandleSubmitAddRating}
+                        />
+                      </div>
+                      
+                    
 
                     <div className={styles.actions_bottom}>
                       <div onClick={ (e,bookData) => HandleSubmitAddHistory_Cart(e,bookData) }>
