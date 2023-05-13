@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import PaginationBookStore from "../../../../components/PaginationBookStore";
 import { FaEdit, FaTrashAlt, FaSearch } from "react-icons/fa"
 import { CgImport, CgExport } from "react-icons/cg";
-
+import BackgroundImportCSV from '../../../../assets/images/csv-import-books.jpg';
 import { Row, Col, Table, Spinner, Modal, Button } from "react-bootstrap";
 import bookApi from "../../../../api/bookApi";
 import format from "../../../../helper/format";
@@ -21,6 +21,12 @@ function BookList() {
 
   const [searchInput, setSearchInput] = useState("")
   const [searchString, setSearchString] = useState("")
+
+  //Import Export CVS Excel to MongoDB
+  const [showModalImportCSV, setShowModalImportCSV] = useState(false);
+
+  //end
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +74,16 @@ function BookList() {
     }
   }
 
+  //Import Export CVS
+  const handleImportCSV = async (e) => {
+    try {
+      setShowModalImportCSV(true);
+    } catch (error) {
+      alert("Nhập sách thất bại!");
+      setShowModalImportCSV(false);
+    }
+  }
+  //end
   return (
     <Row>
       <Modal size="lg" show={showModal} onHide={() => setShowModal(false)}>
@@ -84,6 +100,26 @@ function BookList() {
           </Button>
         </Modal.Footer>
       </Modal>
+      {/* Modal: Import Export CVS Excel to MongoDB */}
+      <Modal size="md" show={showModalImportCSV} onHide={() => setShowModalImportCSV(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Nhập sách - Kéo thả file CSV vào đây?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <img src={BackgroundImportCSV} style={{width: '468px', height: '400px'}} alt="background-import-cvs"/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModalImportCSV(false)}>
+            Hủy
+          </Button>
+          <Button variant="primary" onClick={handleImportCSV}>
+            Nhập sách
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      {/* end */}
       <Col xl={12}>
         <div className="admin-content-wrapper">
           <div className="admin-content-header">Danh sách sản phẩm</div>
@@ -107,10 +143,7 @@ function BookList() {
                   <CgImport /> Xuất Excel
               </Button>
               <Button type="button" style={{backgroundColor: 'blue', color: "white"}} variant="info"
-                // onClick={() => {
-                //   setSearchString(searchInput)
-                //   setPage(1)
-                // }}
+                onClick={() => setShowModalImportCSV(true)}
                 >
                   <CgExport /> Nhập Sách
               </Button>
