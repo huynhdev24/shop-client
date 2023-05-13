@@ -8,6 +8,7 @@ import BackgroundImportCSV from '../../../../assets/images/csv-import-books.jpg'
 import { Row, Col, Table, Spinner, Modal, Button } from "react-bootstrap";
 import bookApi from "../../../../api/bookApi";
 import format from "../../../../helper/format";
+import { FileUploader } from "react-drag-drop-files";
 
 function BookList() {
   const [bookData, setBookData] = useState({});
@@ -24,6 +25,7 @@ function BookList() {
 
   //Import Export CVS Excel to MongoDB
   const [showModalImportCSV, setShowModalImportCSV] = useState(false);
+  const fileTypes = ["CSV"];
 
   //end
 
@@ -83,6 +85,11 @@ function BookList() {
       setShowModalImportCSV(false);
     }
   }
+
+  const [fileCSV, setFileCSV] = useState(null);
+  const handleChangeFileCSV = (file) => {
+    setFileCSV(file);
+  };
   //end
   return (
     <Row>
@@ -108,7 +115,15 @@ function BookList() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img src={BackgroundImportCSV} style={{width: '468px', height: '400px'}} alt="background-import-cvs"/>
+          <FileUploader
+            multiple={true}
+            handleChange={handleChangeFileCSV}
+            name="file"
+            types={fileTypes}
+          >
+            <img src={BackgroundImportCSV} style={{width: '468px', height: '400px'}} alt="background-import-cvs"/>
+            <p>{fileCSV ? `File name: ${fileCSV[0].name}` : "no files uploaded yet"}</p>
+          </FileUploader>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModalImportCSV(false)}>
