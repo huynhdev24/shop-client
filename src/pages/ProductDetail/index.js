@@ -181,7 +181,23 @@ export default function ProductDetail() {
   const changeRating = async (newRating, name) => {
     setRatingData(newRating);
     await ratingApi.create({user: currentUser.userId, product: bookData._id, rating: newRating})
+    // const res = await ratingApi.getAverage({user: currentUser.userId, product: bookData._id});
+    // setAverageRatings(res.data)
   }
+
+  //average rating
+  // const [averageRatings, setAverageRatings] = useState(3);
+  // useEffect(() => {
+  //   const fetchAverageRatings = async () => {
+  //     try {
+  //       const res = await ratingApi.getAverage({user: currentUser.userId, product: bookData._id});
+  //       setAverageRatings(res.data)
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchAverageRatings();
+  // }, [averageRatings, currentUser.userId, bookData._id]);
   // const [ratingVoteData, setRatingVoteData] = useState({})
   // const HandleSubmitAddRating = async (ratingVoteData) => {    
   //   try {

@@ -13,6 +13,10 @@ const ratingApi = {
         const url = `rating/`
         return axiosClient.post(url, data)
     },
+    getAverage: (data) => {
+        const url = `rating/average-ratings/`
+        return axiosClient.post(url, data)
+    }
 }
 
 export default ratingApi
