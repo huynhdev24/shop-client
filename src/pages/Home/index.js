@@ -12,6 +12,7 @@ import BookBanner2 from '../../assets/images/BannerBlock10_KinhTe350x415.jpg';
 import BookBanner3 from '../../assets/images/BannerBlock10_TamLyKyNang_350x415.jpg';
 import BookBanner4 from '../../assets/images/BannerBlock10_VanHoc_350x415.jpg';
 import BookBanner5 from '../../assets/images/BannerBlock10_ThieuNhi_350x415.jpg';
+import { Link } from "react-router-dom";
 
 function Home() {
   const [books, setBooks] = useState([])
@@ -99,6 +100,40 @@ function Home() {
         </div>
       </Container>
       <Container>
+        <hr/>
+        <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
+          <Col xl={2}>
+            <Link to='/' style={{padding: '12px', borderRadius: '8px', borderColor: 'red', borderStyle: 'solid', borderWidth: '2px'}}>
+              Văn học - Giảm Sốc
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              Văn Học Mới
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              SmartShop Khuyên Đọc
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              Tiểu thuyết
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              Truyện ngắn - Tản văn
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              Ngôn Tình
+            </Link>
+          </Col>
+        </Row>
+        <hr/>
         <Row>
           <Col xl={4}>
             <Carousel>
