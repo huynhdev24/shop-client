@@ -5,6 +5,13 @@ import { useEffect, useState } from "react";
 import styles from './Home.module.css'
 import Loading from "../../components/Loading"
 // import styles from "./Product.module.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import BookBanner1 from '../../assets/images/BannerBlock09_NgoaiVan_350x415.jpg';
+import BookBanner2 from '../../assets/images/BannerBlock10_KinhTe350x415.jpg';
+import BookBanner3 from '../../assets/images/BannerBlock10_TamLyKyNang_350x415.jpg';
+import BookBanner4 from '../../assets/images/BannerBlock10_VanHoc_350x415.jpg';
+import BookBanner5 from '../../assets/images/BannerBlock10_ThieuNhi_350x415.jpg';
 
 function Home() {
   const [books, setBooks] = useState([])
@@ -90,6 +97,67 @@ function Home() {
             ) : <Loading />}
           </Row>
         </div>
+      </Container>
+      <Container>
+        <Row>
+          <Col xl={4}>
+            <Carousel>
+              <Col xl={2} xs={12}>
+                <div>
+                    <img src={BookBanner1} style={{width: '400px', heigth: '500px'}} alt="banner 1"/>
+                </div>
+              </Col>
+              <Col xl={2} xs={12}>
+                <div>
+                    <img src={BookBanner2} style={{width: '400px', heigth: '500px'}} alt="banner 2"/>
+                </div>
+              </Col>
+              <Col xl={2} xs={12}>
+                <div>
+                    <img src={BookBanner3} style={{width: '400px', heigth: '500px'}} alt="banner 3"/>
+                </div>
+              </Col>     
+            </Carousel>
+          </Col>
+          <Col xl={4}>
+            <Carousel>
+                <Col xl={2} xs={12}>
+                  <div>
+                      <img src={BookBanner4} style={{width: '400px', heigth: '500px'}} alt="banner 4"/>
+                  </div>
+                </Col>
+                <Col xl={2} xs={12}>
+                  <div>
+                      <img src={BookBanner2} style={{width: '400px', heigth: '500px'}} alt="banner 2"/>
+                  </div>
+                </Col>
+                <Col xl={2} xs={12}>
+                  <div>
+                      <img src={BookBanner3} style={{width: '400px', heigth: '500px'}} alt="banner 3"/>
+                  </div>
+                </Col>     
+              </Carousel>
+          </Col>
+          <Col xl={4}>
+            <Carousel>
+                <Col xl={2} xs={12}>
+                  <div>
+                      <img src={BookBanner5} style={{width: '400px', heigth: '500px'}} alt="banner 5"/>
+                  </div>
+                </Col>
+                <Col xl={2} xs={12}>
+                  <div>
+                      <img src={BookBanner2} style={{width: '400px', heigth: '500px'}} alt="banner 2"/>
+                  </div>
+                </Col>
+                <Col xl={2} xs={12}>
+                  <div>
+                      <img src={BookBanner4} style={{width: '400px', heigth: '500px'}} alt="banner 4"/>
+                  </div>
+                </Col>     
+              </Carousel>
+          </Col>
+        </Row>
       </Container>
     </div>
   );
