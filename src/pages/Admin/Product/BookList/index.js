@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { toast } from 'react-toastify';
 import PaginationBookStore from "../../../../components/PaginationBookStore";
 import { FaEdit, FaTrashAlt, FaSearch } from "react-icons/fa"
-
+import { CgImport, CgExport } from "react-icons/cg";
 
 import { Row, Col, Table, Spinner, Modal, Button } from "react-bootstrap";
 import bookApi from "../../../../api/bookApi";
@@ -97,6 +97,22 @@ function BookList() {
                 }}
                 >
                   <FaSearch />
+              </Button>
+              <Button type="button" style={{backgroundColor: 'green', color: "white", marginLeft: '20px', marginRight: '20px'}} variant="info"
+                // onClick={() => {
+                //   setSearchString(searchInput)
+                //   setPage(1)
+                // }}
+                >
+                  <CgImport /> Xuất Excel
+              </Button>
+              <Button type="button" style={{backgroundColor: 'blue', color: "white"}} variant="info"
+                // onClick={() => {
+                //   setSearchString(searchInput)
+                //   setPage(1)
+                // }}
+                >
+                  <CgExport /> Nhập Sách
               </Button>
             </div>
           </div>
