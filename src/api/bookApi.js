@@ -36,7 +36,11 @@ const bookApi = {
     delete: (id) => {
         const url = `books/${id}`
         return axiosClient.delete(url)
-    }
+    },
+    getBestProducts: ({page = 1, limit, sort = { createdAt: -1 }, query = null}) => {
+        const url = 'books/bests/'
+        return axiosClient.get(url, { params: {page, limit, sort, query}})
+    },
 }
 
 export default bookApi

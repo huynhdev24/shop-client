@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const [books, setBooks] = useState([])
-
+  const [bestBooks, setBestBooks] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,6 +30,21 @@ function Home() {
     }
 
     fetchData()
+  }, [])
+
+  useEffect(() => {
+    const fetchBestBookData = async () => {
+      try {
+        const { data } = await bookApi.getAll({page: 1, limit: 12});
+        // const { data } = await bookApi.getAll()
+        console.log(data);
+        setBestBooks(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchBestBookData()
   }, [])
   
   return (
@@ -90,10 +105,10 @@ function Home() {
             <h2 className={styles.titleHeading}>Sản phẩm bán chạy</h2>
           </div>
           <Row className={styles.row}>
-            {books && books.length > 0 ? (
-               books.map(book => 
-                <Col xl={2} xs={6} key={book._id}>
-                  <BookItem data={book} />
+            {bestBooks && bestBooks.length > 0 ? (
+               bestBooks.map(bestBook => 
+                <Col xl={2} xs={6} key={bestBook._id}>
+                  <BookItem data={bestBook} />
                 </Col>)
             ) : <Loading />}
           </Row>
