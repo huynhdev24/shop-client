@@ -54,6 +54,38 @@ function Home() {
           <div className={styles.title}>
             <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
           </div>
+        <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
+          <Col xl={2}>
+            <Link to='/' style={{padding: '12px', borderRadius: '8px', borderColor: 'red', borderStyle: 'solid', borderWidth: '2px'}}>
+              Văn học - Giảm Sốc
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              Văn Học Mới
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              SmartShop Khuyên Đọc
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              Tiểu thuyết
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              Truyện ngắn - Tản văn
+            </Link>
+          </Col>
+          <Col xl={2}>
+            <Link to='/'>
+              Ngôn Tình
+            </Link>
+          </Col>
+        </Row>
           <Row style={{marginLeft: '16px', marginTop: '20px' , marginBottom: '15px'}}>
             <Col xl={4}>
               {/* <div className={styles.orderItem}> */}
