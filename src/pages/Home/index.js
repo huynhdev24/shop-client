@@ -12,6 +12,9 @@ import BookBanner2 from '../../assets/images/BannerBlock10_KinhTe350x415.jpg';
 import BookBanner3 from '../../assets/images/BannerBlock10_TamLyKyNang_350x415.jpg';
 import BookBanner4 from '../../assets/images/BannerBlock10_VanHoc_350x415.jpg';
 import BookBanner5 from '../../assets/images/BannerBlock10_ThieuNhi_350x415.jpg';
+import TrackIcon1 from '../../assets/images/track-icon-1.png';
+import TrackIcon2 from '../../assets/images/track-icon-2.png';
+import TrackIcon3 from '../../assets/images/track-icon-3.png';
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -49,6 +52,43 @@ function Home() {
   
   return (
     <div className="main">
+      <Container >
+        <Row className={styles.row}>
+          <Col xl={3}>
+            <Row>
+              <Col style={{textAlign: 'right'}}>
+                <img src={TrackIcon1} alt="track icon 1" style={{marginLeft: '12px', height: '54px', width: '54px'}}/>
+              </Col>
+              <Col>
+                <p style={{fontSize: '20px', fontWeight: 'bold'}}>7 ngày miễn phí trả hàng</p>
+                <p style={{fontSize: '16px'}}>Trả hàng miễn phí trong 7 ngày</p>
+              </Col>
+            </Row>          
+          </Col>
+          <Col xl={4}>
+            <Row>
+              <Col style={{textAlign: 'right'}}>
+                <img src={TrackIcon2} alt="track icon 2" style={{marginLeft: '12px', height: '54px', width: '54px'}}/>
+              </Col>
+              <Col>
+                <p style={{fontSize: '20px', fontWeight: 'bold'}}>Hàng chính hãng 100%</p>
+                <p style={{fontSize: '16px'}}>Đảm bảo hàng chính hãng hoặc hoàn tiền gấp đôi</p>
+              </Col>
+            </Row>
+          </Col>
+          <Col xl={4}>
+            <Row>
+              <Col style={{textAlign: 'right'}}>
+                <img src={TrackIcon3} alt="track icon 3" style={{marginLeft: '12px', height: '54px', width: '54px'}}/>
+              </Col>
+              <Col>
+                <p style={{fontSize: '20px', fontWeight: 'bold'}}>Miễn phí vận chuyển</p>
+                <p style={{fontSize: '16px'}}>Giao hàng miễn phí toàn quốc</p>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
       <Container>
         <div className={styles.booksList}>
           <div className={styles.title}>
@@ -238,6 +278,43 @@ function Home() {
                   </div>
                 </Col>     
               </Carousel>
+          </Col>
+        </Row>
+      </Container>
+      <Container >
+        <Row className={styles.row}>
+          <Col xl={3}>
+            <Row>
+              <Col style={{textAlign: 'right'}}>
+                <img src={TrackIcon1} alt="track icon 1" style={{marginLeft: '12px', height: '54px', width: '54px'}}/>
+              </Col>
+              <Col>
+                <p style={{fontSize: '20px', fontWeight: 'bold'}}>7 ngày miễn phí trả hàng</p>
+                <p style={{fontSize: '16px'}}>Trả hàng miễn phí trong 7 ngày</p>
+              </Col>
+            </Row>          
+          </Col>
+          <Col xl={4}>
+            <Row>
+              <Col style={{textAlign: 'right'}}>
+                <img src={TrackIcon2} alt="track icon 2" style={{marginLeft: '12px', height: '54px', width: '54px'}}/>
+              </Col>
+              <Col>
+                <p style={{fontSize: '20px', fontWeight: 'bold'}}>Hàng chính hãng 100%</p>
+                <p style={{fontSize: '16px'}}>Đảm bảo hàng chính hãng hoặc hoàn tiền gấp đôi</p>
+              </Col>
+            </Row>
+          </Col>
+          <Col xl={4}>
+            <Row>
+              <Col style={{textAlign: 'right'}}>
+                <img src={TrackIcon3} alt="track icon 3" style={{marginLeft: '12px', height: '54px', width: '54px'}}/>
+              </Col>
+              <Col>
+                <p style={{fontSize: '20px', fontWeight: 'bold'}}>Miễn phí vận chuyển</p>
+                <p style={{fontSize: '16px'}}>Giao hàng miễn phí toàn quốc</p>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>
