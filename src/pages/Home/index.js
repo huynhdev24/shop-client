@@ -63,7 +63,7 @@ function Home() {
   
   return (
     <div className="main">
-      <Container >
+      <Container style={{marginBottom: '12px'}}>
         <Row className={styles.row}>
           <Col xl={3}>
             <Row>
