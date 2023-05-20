@@ -74,7 +74,7 @@ function Home() {
   
   return (
     <div className="main">
-      <Container style={{marginBottom: '12px'}}>
+      <Container style={{marginBottom: '12px'}} className={styles.hiddenTracking}>
         <Row className={styles.row}>
           <Col xl={3}>
             <Row>
@@ -117,7 +117,7 @@ function Home() {
             <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
           </div>
           {/* Icons */}
-          <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
+          <Row className={styles.hiddenTracking} style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
             <Col xl={1} style={{margin: '10px'}}>
               <Link to='/'>
                 <img src={Icon1} alt='icon 1'/>
@@ -179,7 +179,7 @@ function Home() {
               </Link>
             </Col>
           </Row>
-          <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
+          <Row className={styles.hiddenTracking} style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
             <Col xl={2}>
               <Link to='/' style={{padding: '12px', borderRadius: '8px', borderColor: 'red', borderStyle: 'solid', borderWidth: '2px'}}>
                 Văn học - Giảm Sốc
@@ -247,7 +247,7 @@ function Home() {
             <h2 className={styles.titleHeading}>Sản phẩm mới nhất</h2>
           </div>
           {/* Categories */}
-          <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
+          <Row className={styles.hiddenTracking} style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
             <Col xl={1} style={{margin: '10px'}}>
               <Link to='/'>
                 <img src={Cate1} alt='icon 1'/>
@@ -336,7 +336,7 @@ function Home() {
       </Container>
       <Container>
         <hr/>
-        <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
+        <Row className={styles.hiddenTracking} style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
           <Col xl={2}>
             <Link to='/' style={{padding: '12px', borderRadius: '8px', borderColor: 'red', borderStyle: 'solid', borderWidth: '2px'}}>
               Văn học - Giảm Sốc
@@ -429,7 +429,7 @@ function Home() {
           </Col>
         </Row>
       </Container>
-      <Container >
+      <Container className={styles.hiddenTracking}>
         <Row className={styles.row}>
           <Col xl={3}>
             <Row>

@@ -103,11 +103,11 @@ function Search() {
             >
               <Container style={{witdh: '1000px'}}>
                 <Row>
-                  <Col>
+                  <Col style={{borderRight: '1px solid red'}}>
                     {searchResult.map(book => <SearchResultItem key={book._id} data={book} />)}
                   </Col>
                   <Col className={styles.hiddenRecommend}>
-                    <p>Các cuốn sách đề xuất cho bạn</p>
+                    <p style={{margin: '10px', fontWeight: 'bold', fontSize: '20px', textAlign: 'center'}}>Các cuốn sách đề xuất cho bạn</p>
                     {/* <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
                         <Col xl={1} style={{margin: '10px'}}>
                           <Link to='/'>
