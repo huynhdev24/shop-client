@@ -15,6 +15,17 @@ import BookBanner5 from '../../assets/images/BannerBlock10_ThieuNhi_350x415.jpg'
 import TrackIcon1 from '../../assets/images/track-icon-1.png';
 import TrackIcon2 from '../../assets/images/track-icon-2.png';
 import TrackIcon3 from '../../assets/images/track-icon-3.png';
+import Icon1 from '../../assets/icons/IconT4_F3.png';
+import Icon2 from '../../assets/icons/Icon_FlashSale_Hot_8px_1.png';
+import Icon3 from '../../assets/icons/Icon_KinhTe_8px_1.png';
+import Icon4 from '../../assets/icons/Icon_MaGiamGia_8px_1.png';
+import Icon5 from '../../assets/icons/Icon_MangaCommic_8px_1.png';
+import Icon6 from '../../assets/icons/Icon_PhienChoCu_8px_1.png';
+import Icon7 from '../../assets/icons/Icon_SanPhamMoi_8px_1.png';
+import Icon8 from '../../assets/icons/Icon_Trending_Hot_8px_1.png';
+import Icon9 from '../../assets/icons/Icon_VanHoc_50.png';
+import Icon10 from '../../assets/icons/TamLyKyNang_50.png';
+
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -57,33 +68,33 @@ function Home() {
           <Col xl={3}>
             <Row>
               <Col style={{textAlign: 'right'}}>
-                <img src={TrackIcon1} alt="track icon 1" style={{marginLeft: '12px', height: '54px', width: '54px'}}/>
+                <img src={TrackIcon1} alt="track icon 1" style={{marginLeft: '8px', height: '50px', width: '50px'}}/>
               </Col>
               <Col>
-                <p style={{fontSize: '20px', fontWeight: 'bold'}}>7 ngày miễn phí trả hàng</p>
-                <p style={{fontSize: '16px'}}>Trả hàng miễn phí trong 7 ngày</p>
+                <p style={{fontSize: '14px', fontWeight: 'bold'}}>7 ngày miễn phí trả hàng</p>
+                <p style={{fontSize: '10px'}}>Trả hàng miễn phí trong 7 ngày</p>
               </Col>
             </Row>          
           </Col>
           <Col xl={4}>
             <Row>
               <Col style={{textAlign: 'right'}}>
-                <img src={TrackIcon2} alt="track icon 2" style={{marginLeft: '12px', height: '54px', width: '54px'}}/>
+                <img src={TrackIcon2} alt="track icon 2" style={{marginLeft: '8px', height: '50px', width: '50px'}}/>
               </Col>
               <Col>
-                <p style={{fontSize: '20px', fontWeight: 'bold'}}>Hàng chính hãng 100%</p>
-                <p style={{fontSize: '16px'}}>Đảm bảo hàng chính hãng hoặc hoàn tiền gấp đôi</p>
+                <p style={{fontSize: '14px', fontWeight: 'bold'}}>Hàng chính hãng 100%</p>
+                <p style={{fontSize: '10px'}}>Đảm bảo hàng chính hãng hoặc hoàn tiền gấp đôi</p>
               </Col>
             </Row>
           </Col>
           <Col xl={4}>
             <Row>
               <Col style={{textAlign: 'right'}}>
-                <img src={TrackIcon3} alt="track icon 3" style={{marginLeft: '12px', height: '54px', width: '54px'}}/>
+                <img src={TrackIcon3} alt="track icon 3" style={{marginLeft: '8px', height: '50px', width: '50px'}}/>
               </Col>
               <Col>
-                <p style={{fontSize: '20px', fontWeight: 'bold'}}>Miễn phí vận chuyển</p>
-                <p style={{fontSize: '16px'}}>Giao hàng miễn phí toàn quốc</p>
+                <p style={{fontSize: '14px', fontWeight: 'bold'}}>Miễn phí vận chuyển</p>
+                <p style={{fontSize: '10px'}}>Giao hàng miễn phí toàn quốc</p>
               </Col>
             </Row>
           </Col>
@@ -94,38 +105,100 @@ function Home() {
           <div className={styles.title}>
             <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
           </div>
-        <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
-          <Col xl={2}>
-            <Link to='/' style={{padding: '12px', borderRadius: '8px', borderColor: 'red', borderStyle: 'solid', borderWidth: '2px'}}>
-              Văn học - Giảm Sốc
-            </Link>
-          </Col>
-          <Col xl={2}>
-            <Link to='/'>
-              Văn Học Mới
-            </Link>
-          </Col>
-          <Col xl={2}>
-            <Link to='/'>
-              SmartShop Khuyên Đọc
-            </Link>
-          </Col>
-          <Col xl={2}>
-            <Link to='/'>
-              Tiểu thuyết
-            </Link>
-          </Col>
-          <Col xl={2}>
-            <Link to='/'>
-              Truyện ngắn - Tản văn
-            </Link>
-          </Col>
-          <Col xl={2}>
-            <Link to='/'>
-              Ngôn Tình
-            </Link>
-          </Col>
-        </Row>
+          <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon1} alt='icon 1'/>
+                Sale Thứ 3
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon2} alt='icon 2'/>
+                Flash Sale
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon3} alt='icon 3'/>
+                Kinh Tế
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon4} alt='icon 4'/>
+                Mã giảm giá
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon5} alt='icon 5'/>
+                Manga - Comic
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon6} alt='icon 6'/>
+                Phiên chợ sách cũ
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon7} alt='icon 7'/>
+                Sản phẩm mới
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon8} alt='icon 8'/>
+                Xu hướng
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon9} alt='icon 9'/>
+                Văn Học
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Icon10} alt='icon 10'/>
+                Tâm Lý Kỹ Năng
+              </Link>
+            </Col>
+          </Row>
+          <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
+            <Col xl={2}>
+              <Link to='/' style={{padding: '12px', borderRadius: '8px', borderColor: 'red', borderStyle: 'solid', borderWidth: '2px'}}>
+                Văn học - Giảm Sốc
+              </Link>
+            </Col>
+            <Col xl={2}>
+              <Link to='/'>
+                Văn Học Mới
+              </Link>
+            </Col>
+            <Col xl={2}>
+              <Link to='/'>
+                SmartShop Khuyên Đọc
+              </Link>
+            </Col>
+            <Col xl={2}>
+              <Link to='/'>
+                Tiểu thuyết
+              </Link>
+            </Col>
+            <Col xl={2}>
+              <Link to='/'>
+                Truyện ngắn - Tản văn
+              </Link>
+            </Col>
+            <Col xl={2}>
+              <Link to='/'>
+                Ngôn Tình
+              </Link>
+            </Col>
+          </Row>
           <Row style={{marginLeft: '16px', marginTop: '20px' , marginBottom: '15px'}}>
             <Col xl={4}>
               {/* <div className={styles.orderItem}> */}
