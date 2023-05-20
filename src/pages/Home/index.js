@@ -25,6 +25,17 @@ import Icon7 from '../../assets/icons/Icon_SanPhamMoi_8px_1.png';
 import Icon8 from '../../assets/icons/Icon_Trending_Hot_8px_1.png';
 import Icon9 from '../../assets/icons/Icon_VanHoc_50.png';
 import Icon10 from '../../assets/icons/TamLyKyNang_50.png';
+import Cate1 from '../../assets/categories/8935246917176.jpg';
+import Cate2 from '../../assets/categories/Manga.jpg';
+import Cate3 from '../../assets/categories/T_m_linh.jpg';
+import Cate4 from '../../assets/categories/Th_c_T_nh.jpg';
+import Cate5 from '../../assets/categories/Thao_t_ng.jpg';
+import Cate6 from '../../assets/categories/Ti_u_Thuy_t.jpg';
+import Cate7 from '../../assets/categories/_am_m_.jpg';
+import Cate8 from '../../assets/categories/lightnovel.jpg';
+import Cate9 from '../../assets/categories/8935246917176.jpg';
+import Cate10 from '../../assets/categories/8935246917176.jpg';
+
 
 import { Link } from "react-router-dom";
 
@@ -105,6 +116,7 @@ function Home() {
           <div className={styles.title}>
             <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
           </div>
+          {/* Icons */}
           <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
             <Col xl={1} style={{margin: '10px'}}>
               <Link to='/'>
@@ -234,6 +246,69 @@ function Home() {
           <div className={styles.title}>
             <h2 className={styles.titleHeading}>Sản phẩm mới nhất</h2>
           </div>
+          {/* Categories */}
+          <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate1} alt='icon 1'/>
+                Sách Học Ngoại Ngữ
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate2} alt='icon 2'/>
+                Manga
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate3} alt='icon 3'/>
+                Tâm Linh Luân Hồi
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate4} alt='icon 4'/>
+                Đối Mặt Thức Tỉnh
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate5} alt='icon 5'/>
+                Tâm Lý Thao Túng
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate6} alt='icon 6'/>
+                Tiểu Thuyết
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate7} alt='icon 7'/>
+                Ngôn Tình Đam Mỹ
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate8} alt='icon 8'/>
+                Xu hướng
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate9} alt='icon 9'/>
+                Văn Học
+              </Link>
+            </Col>
+            <Col xl={1} style={{margin: '10px'}}>
+              <Link to='/'>
+                <img src={Cate10} alt='icon 10'/>
+                Tâm Lý Kỹ Năng
+              </Link>
+            </Col>
+          </Row>
           <Row className={styles.row}>
             {books && books.length > 0 ? (
                books.map(book => 
