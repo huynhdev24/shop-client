@@ -155,6 +155,22 @@ export default function Product() {
           </Row>
         </div>
       </Container>
+      <Container>
+        <div className={styles.booksList}>
+          <div className={styles.title}>
+            <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
+          </div>
+          <Row>
+            {bookData.books && bookData.books.length > 0 ? (
+               bookData.books.map((book) => 
+                <Col xl={3} key={book._id}>
+                  <BookItem boxShadow={true} data={book} />
+                </Col>)
+            ) :
+            <Loading />}
+          </Row>
+        </div>
+      </Container>
     </div>
   );
 }
