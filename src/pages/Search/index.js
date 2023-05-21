@@ -47,6 +47,22 @@ function Search() {
           </Row>
         </div>
       </Container>
+      <Container>
+        <div className={styles.booksList}>
+          <div className={styles.title}>
+            <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
+          </div>
+          <Row>
+            {books && books.length > 0 ? (
+               books.map(book => 
+                <Col xl={3} key={book._id}>
+                  <BookItem boxShadow={true} data={book} />
+                </Col>)
+            ) :
+            <p className={styles.notfound}>Không tìm thấy kết quả phù hợp với từ khóa "<span className={styles.keyword}>{key}</span>"</p>}
+          </Row>
+        </div>
+      </Container>
     </div>
   );
 }
