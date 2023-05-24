@@ -155,7 +155,8 @@ export default function Product() {
           </Row>
         </div>
       </Container>
-      <Container>
+      {/* Disabled UI */}
+      {/* <Container>
         <div className={styles.booksList}>
           <div className={styles.title}>
             <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
@@ -170,7 +171,8 @@ export default function Product() {
             <Loading />}
           </Row>
         </div>
-      </Container>
+      </Container> */}
+      {/* Disabled UI */}
     </div>
   );
 }

@@ -114,7 +114,8 @@ function Home() {
       <Container>
         <div className={styles.booksList}>
           <div className={styles.title}>
-            <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
+            {/* <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2> */}
+            <h2 className={styles.titleHeading}>Tùy chọn nhanh</h2>
           </div>
           {/* Icons */}
           <Row className={styles.hiddenTracking} style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
@@ -211,16 +212,14 @@ function Home() {
               </Link>
             </Col>
           </Row>
-          <Row style={{marginLeft: '16px', marginTop: '20px' , marginBottom: '15px'}}>
+          {/* Disabled UI */}
+          {/* <Row style={{marginLeft: '16px', marginTop: '20px' , marginBottom: '15px'}}>
             <Col xl={4}>
-              {/* <div className={styles.orderItem}> */}
               <div>
                 <label htmlFor="ai-recommender" style={{marginBottom: '5px'}}>Chọn cách đề xuất - AI:</label>
                 <select
                   className="form-select"
                   name="ai-recommender"
-                  // value={sortString}
-                  // onChange={(e) => setSortString(e.target.value)}
                 >
                   <option value="createdAt|-1">Mới nhất</option>
                   <option value="createdAt|1">Các cuốn sách nhiều người mua nhất</option>
@@ -238,7 +237,8 @@ function Home() {
                   <BookItem data={book} />
                 </Col>)
             ) : <Loading />}
-          </Row>
+          </Row> */}
+          {/* Disabled UI */}
         </div>
       </Container>
       <Container style={{marginTop: "40"}}>

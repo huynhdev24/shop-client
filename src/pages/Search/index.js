@@ -47,7 +47,8 @@ function Search() {
           </Row>
         </div>
       </Container>
-      <Container>
+      {/* Disabled UI */}
+      {/* <Container>
         <div className={styles.booksList}>
           <div className={styles.title}>
             <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
@@ -62,7 +63,8 @@ function Search() {
             <p className={styles.notfound}>Không tìm thấy kết quả phù hợp với từ khóa "<span className={styles.keyword}>{key}</span>"</p>}
           </Row>
         </div>
-      </Container>
+      </Container> */}
+      {/* Disabled UI */}
     </div>
   );
 }
