@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineHeart, AiFillHeart, AiOutlineSearch } from 'react-icons/ai'
 import { toast } from 'react-toastify';
 
 import DetailedBookInfo from '../../components/Shop/DetailedBookInfo'
@@ -20,6 +20,9 @@ import historyApi from '../../api/historyApi';
 //rating
 import StarRatings from 'react-star-ratings';
 import ratingApi from '../../api/ratingApi';
+
+//pythons
+import pythonApi from '../../api/pythonApi';
 
 export default function ProductDetail() {
 
@@ -218,6 +221,15 @@ export default function ProductDetail() {
   // }
   //end
 
+  const handleRecommend = async () => {
+    try {
+      // let name = bookDataName;
+      await pythonApi.testPythonShell()
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="main">
       <Container>
@@ -301,6 +313,14 @@ export default function ProductDetail() {
                       <div onClick={ (e,bookData) => HandleSubmitAddHistory_Checkout(e,bookData) }>
                         <button className={styles.buyBtn} onClick={handleBuyNow}>Mua ngay</button>
                       </div>
+                      {/* Recommendation Button */}
+                      <div>
+                        <button className={styles.recommendBtn} onClick={handleRecommend}>
+                          <AiOutlineSearch className={styles.addToCartIcon} />
+                          Đề xuất
+                        </button>
+                      </div>
+                      {/* Recommendation Button */}
                     </div>
                   </div>
                 </div>
