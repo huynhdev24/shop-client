@@ -51,6 +51,7 @@
     z-index: 1000;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.15);
     width: 1000px;
+    /* width: 400px; */
 }
 
 
@@ -116,4 +117,12 @@
     .resultSearch {
         width: 100%;
     }
+ }
+
+ .hide {
+    display: none;
+ }
+
+ .showDescription:hover + .hide {
+    display: block;
  }

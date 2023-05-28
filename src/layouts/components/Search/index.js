@@ -47,9 +47,15 @@ function Search() {
           return
         }
         setLoading(true)
-        const res = await bookApi.search({key: debounced, limit: 5})
+        const res = await bookApi.search({key: debounced, limit: 10})
+        let resRev = null;
         setLoading(false)
-        setSearchResult(res.data)
+        if(res === null || res === undefined) {
+          resRev = await bookApi.search({key: reverse(debounced), limit: 10})
+          setSearchResult(resRev.data)
+        } else {
+          setSearchResult(res.data)
+        }
         setShowResult(true)
         console.log(res.data)
       } catch (error) {
@@ -71,6 +77,10 @@ function Search() {
       search: `key=${key}`
     })
    
+  }
+
+  function reverse(s){
+    return s.split("").reverse().join("");
   }
 
   return (
@@ -101,81 +111,19 @@ function Search() {
             <div className={styles.resultSearch} onMouseDown={(e) => {e.preventDefault()}}
               onClick={() => setShowResult(false)}
             >
-              <Container style={{witdh: '1000px'}}>
+              {/* witdh: '1000px'} */}
+              <Container style={{overflowY: 'scroll', height: '500px'}}>
                 <Row>
                   <Col style={{borderRight: '1px solid red'}}>
                     {searchResult.map(book => <SearchResultItem key={book._id} data={book} />)}
                   </Col>
                   <Col className={styles.hiddenRecommend}>
                     <p style={{margin: '10px', fontWeight: 'bold', fontSize: '20px', textAlign: 'center'}}>Các cuốn sách đề xuất cho bạn</p>
-                    {/* <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon1} alt='icon 1'/>
-                            Sale Thứ 3
-                          </Link>
-                        </Col>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon2} alt='icon 2'/>
-                            Flash Sale
-                          </Link>
-                        </Col>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon3} alt='icon 3'/>
-                            Kinh Tế
-                          </Link>
-                        </Col>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon4} alt='icon 4'/>
-                            Mã giảm giá
-                          </Link>
-                        </Col>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon5} alt='icon 5'/>
-                            Manga - Comic
-                          </Link>
-                        </Col>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon6} alt='icon 6'/>
-                            Phiên chợ sách cũ
-                          </Link>
-                        </Col>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon7} alt='icon 7'/>
-                            Sản phẩm mới
-                          </Link>
-                        </Col>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon8} alt='icon 8'/>
-                            Xu hướng
-                          </Link>
-                        </Col>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon9} alt='icon 9'/>
-                            Văn Học
-                          </Link>
-                        </Col>
-                        <Col xl={1} style={{margin: '10px'}}>
-                          <Link to='/'>
-                            <img src={Icon10} alt='icon 10'/>
-                            Tâm Lý Kỹ Năng
-                          </Link>
-                        </Col>
-                    </Row> */}
-                    {/* Categories */}
                     <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
                       <Col xl={3} style={{margin: '10px'}}>
                         <Link to='/'>
                           <img src={Cate1} alt='icon 1'/>
-                          Sách Học Ngoại Ngữ
+                          Mind map English Grammar
                         </Link>
                       </Col>
                       <Col xl={3} style={{margin: '10px'}}>
@@ -187,51 +135,27 @@ function Search() {
                       <Col xl={3} style={{margin: '10px'}}>
                         <Link to='/'>
                           <img src={Cate3} alt='icon 3'/>
-                          Tâm Linh Luân Hồi
+                          Muôn kiếp nhân sinh
                         </Link>
                       </Col>
                       <Col xl={3} style={{margin: '10px'}}>
                         <Link to='/'>
                           <img src={Cate4} alt='icon 4'/>
-                          Đối Mặt Thức Tỉnh
+                          Hành trình của 1 kẻ nghĩ nhiều
                         </Link>
                       </Col>
                       <Col xl={3} style={{margin: '10px'}}>
                         <Link to='/'>
                           <img src={Cate5} alt='icon 5'/>
-                          Tâm Lý Thao Túng
+                          Tâm lý học tội phạm
                         </Link>
                       </Col>
                       <Col xl={3} style={{margin: '10px'}}>
                         <Link to='/'>
                           <img src={Cate6} alt='icon 6'/>
-                          Tiểu Thuyết
+                          Cây cam mới của tôi
                         </Link>
                       </Col>
-                      {/* <Col xl={1} style={{margin: '10px'}}>
-                        <Link to='/'>
-                          <img src={Cate7} alt='icon 7'/>
-                          Ngôn Tình Đam Mỹ
-                        </Link>
-                      </Col>
-                      <Col xl={1} style={{margin: '10px'}}>
-                        <Link to='/'>
-                          <img src={Cate8} alt='icon 8'/>
-                          Xu hướng
-                        </Link>
-                      </Col>
-                      <Col xl={1} style={{margin: '10px'}}>
-                        <Link to='/'>
-                          <img src={Cate9} alt='icon 9'/>
-                          Văn Học
-                        </Link>
-                      </Col>
-                      <Col xl={1} style={{margin: '10px'}}>
-                        <Link to='/'>
-                          <img src={Cate10} alt='icon 10'/>
-                          Tâm Lý Kỹ Năng
-                        </Link>
-                      </Col> */}
                     </Row>
                   </Col>
                 </Row>
@@ -245,3 +169,5 @@ function Search() {
 }
 
 export default memo(Search);
+
+

@@ -22,7 +22,7 @@ import StarRatings from 'react-star-ratings';
 import ratingApi from '../../api/ratingApi';
 
 //pythons
-import pythonApi from '../../api/pythonApi';
+// import pythonApi from '../../api/pythonApi';
 
 export default function ProductDetail() {
 
@@ -220,11 +220,16 @@ export default function ProductDetail() {
   //   }
   // }
   //end
-
+  // const [key, setKey] = useState("")
   const handleRecommend = async () => {
     try {
       // let name = bookDataName;
-      await pythonApi.testPythonShell()
+      // await pythonApi.testPythonShell()
+      navigate({
+        pathname: '/de-xuat',
+        search: `bookname=${bookData.name}`,
+
+      })
     } catch (error) {
       console.log(error);
     }
@@ -315,7 +320,7 @@ export default function ProductDetail() {
                       </div>
                       {/* Recommendation Button */}
                       <div>
-                        <button className={styles.recommendBtn} onClick={handleRecommend}>
+                        <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleRecommend}>
                           <AiOutlineSearch className={styles.addToCartIcon} />
                           Đề xuất
                         </button>

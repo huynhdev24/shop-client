@@ -5,6 +5,7 @@ import styles from "./Search.module.css";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import historyApi from '../../../api/historyApi';
+import { stripHtml } from "string-strip-html";
 
 export default function SearchResultItem({ data }) {
 
@@ -30,7 +31,7 @@ export default function SearchResultItem({ data }) {
   //end
 
   return (
-    <div onClick={handleSubmitAdd}>
+    <div onClick={handleSubmitAdd} style={{marginBottom: '20px'}}>
       <Link to={`/chi-tiet-san-pham/${data.slug}`}>
       <div className={styles.resultItem}>
         <div className={styles.img}>
@@ -40,6 +41,14 @@ export default function SearchResultItem({ data }) {
           <p className={styles.name}>{data.name}</p>
           <p>{data?.author[0]?.name}</p>
         </div>
+      </div>
+      <div>
+          {
+              data.description.length >= 200 && 
+              <p>
+                {stripHtml(data.description.substring(0,199)).result}
+              </p>
+          }
       </div>
     </Link>
     </div>

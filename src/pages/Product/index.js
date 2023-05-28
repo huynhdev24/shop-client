@@ -79,7 +79,7 @@ export default function Product() {
     <div className="main">
       <Container>
         <Breadcrumb>
-          <Breadcrumb.Item linkAs={NavLink} linkProps={{ to: "/" }}>Trang chủ</Breadcrumb.Item>
+          <Breadcrumb.Item linkAs={NavLink} linkProps={{ to: "/" }} style={{backgroundColor: 'red', padding: '2px', borderRadius:'4px'}}>Trang chủ</Breadcrumb.Item>
           <Breadcrumb.Item active linkAs={NavLink} linkProps={{ to: "/san-pham" }}>Sản phẩm</Breadcrumb.Item>
         </Breadcrumb>
         <div className={styles.genre_body}>

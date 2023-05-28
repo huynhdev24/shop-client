@@ -26,6 +26,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import GenreDetail from "./pages/GenreDetail";
 import Search from "./pages/Search";
+import Recommend from "./pages/Recommend";
 
 // Customer
 import Profile from "./pages/Account/Profile";
@@ -126,6 +127,7 @@ function App() {
           <Route path="/thanh-toan" element={<Checkout />} />
           <Route path="/san-pham/the-loai/:genre" element={<GenreDetail />} />
           <Route path="/tim-kiem" element={<Search />} />
+          <Route path="/de-xuat" element={<Recommend />} />
 
           <Route path="/thanhtoan/momo/callback" element={<MoMoCallback />}></Route>
 
