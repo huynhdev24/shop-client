@@ -41,11 +41,11 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const [books, setBooks] = useState([])
-  const [bestBooks, setBestBooks] = useState([]);
+  // const [bestBooks, setBestBooks] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await bookApi.getAll({page: 1, limit: 12})
+        const { data } = await bookApi.getAll({page: 1, limit: 12 * 4})
         // const { data } = await bookApi.getAll()
         console.log(data);
         setBooks(data)
@@ -55,22 +55,36 @@ function Home() {
     }
 
     fetchData()
+
+    // const fetchBestBookData = async () => {
+    //   try {
+    //     // const { data } = await bookApi.getBestProducts({page: 1, limit: 12});
+    //     const { data } = await bookApi.getSales();
+    //     // const { data } = await bookApi.getAll()
+    //     console.log(data);
+    //     setBestBooks(data)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
+
+    // fetchBestBookData()
   }, [])
 
-  useEffect(() => {
-    const fetchBestBookData = async () => {
-      try {
-        const { data } = await bookApi.getAll({page: 1, limit: 12});
-        // const { data } = await bookApi.getAll()
-        console.log(data);
-        setBestBooks(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
+  // useEffect(() => {
+  //   const fetchBestBookData = async () => {
+  //     try {
+  //       const { data } = await bookApi.getBestProducts({page: 1, limit: 12});
+  //       // const { data } = await bookApi.getAll()
+  //       console.log(data);
+  //       setBestBooks(data)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
 
-    fetchBestBookData()
-  }, [])
+  //   fetchBestBookData()
+  // }, [])
   
   return (
     <div className="main">
@@ -319,7 +333,7 @@ function Home() {
           </Row>
         </div>
       </Container>
-      <Container style={{marginTop: "40"}}>
+      {/* <Container style={{marginTop: "40"}}>
         <div className={styles.booksList}>
           <div className={styles.title}>
             <h2 className={styles.titleHeading}>Sản phẩm bán chạy</h2>
@@ -333,7 +347,7 @@ function Home() {
             ) : <Loading />}
           </Row>
         </div>
-      </Container>
+      </Container> */}
       <Container>
         <hr/>
         <Row className={styles.hiddenTracking} style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>

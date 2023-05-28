@@ -89,3 +89,7 @@
     color: #666;
     margin-left: 10px;
 }
+
+.bookDescription {
+    text-decoration: none;
+}
