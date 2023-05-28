@@ -79,7 +79,7 @@ export default function Product() {
     <div className="main">
       <Container>
         <Breadcrumb>
-          <Breadcrumb.Item linkAs={NavLink} linkProps={{ to: "/" }}>Trang chủ</Breadcrumb.Item>
+          <Breadcrumb.Item linkAs={NavLink} linkProps={{ to: "/" }} style={{backgroundColor: 'red', padding: '2px', borderRadius:'4px'}}>Trang chủ</Breadcrumb.Item>
           <Breadcrumb.Item active linkAs={NavLink} linkProps={{ to: "/san-pham" }}>Sản phẩm</Breadcrumb.Item>
         </Breadcrumb>
         <div className={styles.genre_body}>
@@ -155,6 +155,24 @@ export default function Product() {
           </Row>
         </div>
       </Container>
+      {/* Disabled UI */}
+      {/* <Container>
+        <div className={styles.booksList}>
+          <div className={styles.title}>
+            <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
+          </div>
+          <Row>
+            {bookData.books && bookData.books.length > 0 ? (
+               bookData.books.map((book) => 
+                <Col xl={3} key={book._id}>
+                  <BookItem boxShadow={true} data={book} />
+                </Col>)
+            ) :
+            <Loading />}
+          </Row>
+        </div>
+      </Container> */}
+      {/* Disabled UI */}
     </div>
   );
 }

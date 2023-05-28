@@ -3,11 +3,14 @@ import { Link } from "react-router-dom"
 import { toast } from 'react-toastify';
 import PaginationBookStore from "../../../../components/PaginationBookStore";
 import { FaEdit, FaTrashAlt, FaSearch } from "react-icons/fa"
-
-
+import { CgImport, CgExport } from "react-icons/cg";
+import BackgroundImportCSV from '../../../../assets/images/csv-import-books.jpg';
 import { Row, Col, Table, Spinner, Modal, Button } from "react-bootstrap";
 import bookApi from "../../../../api/bookApi";
+import importCSVApi from "../../../../api/importCSVApi";
 import format from "../../../../helper/format";
+// eslint-disable-next-line
+import { FileUploader } from "react-drag-drop-files";
 
 function BookList() {
   const [bookData, setBookData] = useState({});
@@ -21,6 +24,14 @@ function BookList() {
 
   const [searchInput, setSearchInput] = useState("")
   const [searchString, setSearchString] = useState("")
+
+  //Import Export CVS Excel to MongoDB
+  const [showModalImportCSV, setShowModalImportCSV] = useState(false);
+  // eslint-disable-next-line
+  const fileTypes = ["CSV"];
+
+  //end
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +79,34 @@ function BookList() {
     }
   }
 
+  //Import Export CVS
+  const handleImportCSV = async (e) => {
+    try {
+      const formData = new FormData();
+      formData.append("name", fileCSV[0].name);
+      formData.append("file", fileCSV[0]);
+      console.log(fileCSV);
+      console.log(formData);
+      const res = await importCSVApi.importBookCSV(formData);
+      console.log(res);
+      if(res.data.status === 400) {
+        toast.error('Không nhập được file Book Excel!', {autoClose: 2000})
+        return
+      }
+      toast.success("Nhập sách thành công!", {autoClose: 2000})
+      setShowModalImportCSV(false);
+    } catch (error) {
+      // alert("Nhập sách thất bại!");
+      console.log("Nhập sách thất bại");
+      setShowModalImportCSV(false);
+    }
+  }
+
+  const [fileCSV, setFileCSV] = useState("");
+  const handleChangeFileCSV = (fileCSV) => {
+    setFileCSV(fileCSV);
+  };
+  //end
   return (
     <Row>
       <Modal size="lg" show={showModal} onHide={() => setShowModal(false)}>
@@ -84,6 +123,40 @@ function BookList() {
           </Button>
         </Modal.Footer>
       </Modal>
+      {/* Modal: Import Export CVS Excel to MongoDB */}
+      <Modal size="md" show={showModalImportCSV} onHide={() => setShowModalImportCSV(false)}>
+      {/* <form encType="multipart/form-data" onSubmit={handleImportCSV}> */}
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Nhập sách - Kéo thả file CSV vào đây?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <FileUploader
+              multiple={true}
+              handleChange={handleChangeFileCSV}
+              name="file"
+              // types={fileTypes}
+              type="file"
+            >
+              <img src={BackgroundImportCSV} style={{width: '468px', height: '400px'}} alt="background-import-cvs"/>
+              <p>{fileCSV ? `File name: ${fileCSV[0].name}` : "no files uploaded yet"}</p>
+            </FileUploader>
+            {/* <img src={BackgroundImportCSV} style={{width: '468px', height: '400px'}} alt="background-import-cvs"/>
+            <input type="file" name="file" value={fileCSV.name} onChange={handleChangeFileCSV}></input>
+            <p>{fileCSV ? `Tên file: ${fileCSV}` : "Chưa có file được tải lên!"}</p> */}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModalImportCSV(false)}>
+            Hủy
+          </Button>
+          <Button variant="primary" onClick={handleImportCSV}>
+            Nhập sách
+          </Button>
+        </Modal.Footer>
+      {/* </form> */}
+      </Modal>
+      {/* end */}
       <Col xl={12}>
         <div className="admin-content-wrapper">
           <div className="admin-content-header">Danh sách sản phẩm</div>
@@ -97,6 +170,19 @@ function BookList() {
                 }}
                 >
                   <FaSearch />
+              </Button>
+              <Button type="button" style={{backgroundColor: 'green', color: "white", marginLeft: '20px', marginRight: '20px'}} variant="info"
+                // onClick={() => {
+                //   setSearchString(searchInput)
+                //   setPage(1)
+                // }}
+                >
+                  <CgImport /> Xuất Excel
+              </Button>
+              <Button type="button" style={{backgroundColor: 'blue', color: "white"}} variant="info"
+                onClick={() => setShowModalImportCSV(true)}
+                >
+                  <CgExport /> Nhập Sách
               </Button>
             </div>
           </div>

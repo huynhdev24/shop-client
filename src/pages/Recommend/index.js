@@ -1,33 +1,54 @@
 import { Container, Row, Col } from "react-bootstrap";
 import BookItem from "../../components/Shop/BookItem";
 import bookApi from "../../api/bookApi";
+import pythonApi from '../../api/pythonApi';
 import { useEffect, useState } from "react";
-import styles from './Search.module.css'
+import styles from './Recommend.module.css'
 import { useSearchParams } from "react-router-dom";
+import Loading from "../../components/Loading"
 
-function Search() {
+function Recommend() {
 
   const [searchParams] = useSearchParams()
 
-  const key = searchParams.get('key')
+  const bookname = searchParams.get('bookname')
 
   const [books, setBooks] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await bookApi.search({key})
-        console.log(res)
-        setBooks(res.data)
+        // const res = await bookApi.search({bookname})
+        // list bookRec = [];
+        const res = await pythonApi.testPythonShell({bookname})
+        const { name, index, data } = res.data;
+        let listBookNLP = [];const limit = 1;
+        const listBooksFinalTrain = async () => {
+          await data.array.forEach(key => {
+            const getBooksNLP = bookApi.search({key, limit});
+            listBookNLP.push(getBooksNLP);
+          });
+          return listBookNLP;
+        }
+        // const resListBooks = await bookApi.getAll();
+        // resListBooks.map((book) => {
+        //   res.map((book2) => {
+        //     if(book2.data. == book) bookRec.push();
+        //   })
+        // })
+        // console.log(res)
+        console.log(res);
+        console.log(listBooksFinalTrain)
+        setBooks(listBooksFinalTrain.data)
         
       } catch (error) {
         console.log(error)
       }
     }
-    if (key) {
+    if (bookname) {
       fetchData()
     }
-  }, [key])
+  }, [bookname])
   
   return (
     <div className="main">
@@ -43,7 +64,8 @@ function Search() {
                   <BookItem boxShadow={true} data={book} />
                 </Col>)
             ) :
-            <p className={styles.notfound}>Không tìm thấy kết quả phù hợp với từ khóa "<span className={styles.keyword}>{key}</span>"</p>}
+              <Loading/>}
+            {/* <p className={styles.notfound}>Không tìm thấy kết quả phù hợp với từ khóa "<span className={styles.keyword}>{bookname}</span>"</p>} */}
           </Row>
         </div>
       </Container>
@@ -69,4 +91,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default Recommend;
