@@ -227,8 +227,7 @@ export default function ProductDetail() {
       // await pythonApi.testPythonShell()
       navigate({
         pathname: '/de-xuat',
-        search: `bookname=${bookData.name}`,
-
+        search: `bookinfo=${bookData._id}|___|${bookData.name}|___|${bookData.description}`,
       })
     } catch (error) {
       console.log(error);

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify"
+import { ToastContainer } from "react-toastify";
 
 // Layout
-import DefaultLayout from "./layouts/DefaultLayout"
-import AdminLayout from "./layouts/AdminLayout"
+import DefaultLayout from "./layouts/DefaultLayout";
+import AdminLayout from "./layouts/AdminLayout";
 import AccountLayout from "./layouts/AccountLayout";
 
 // Home, Cart, Discount pages
@@ -18,7 +18,7 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import ForgotPassword from "./pages/Auth/ForgotPassword"
 import ResetPassword from "./pages/Auth/ResetPassword";
-import Active from "./pages/Auth/Active"
+import Active from "./pages/Auth/Active";
 
 // Product, Genre, Search
 import Product from "./pages/Product";
@@ -36,11 +36,11 @@ import History from "./pages/Account/History";
 
 // Admin
 import ProtectedRoute from "./components/ProtectedRoute";
-import Analytics from "./pages/Admin/Analytics"
-import AddBook from "./pages/Admin/Product/AddBook"
-import UpdateBook from "./pages/Admin/Product/UpdateBook"
-import BookList from "./pages/Admin/Product/BookList"
-import Author from "./pages/Admin/Author"
+import Analytics from "./pages/Admin/Analytics";
+import AddBook from "./pages/Admin/Product/AddBook";
+import UpdateBook from "./pages/Admin/Product/UpdateBook";
+import BookList from "./pages/Admin/Product/BookList";
+import Author from "./pages/Admin/Author";
 import OrderList from "./pages/Admin/Order/OrderList";
 import Voucher from "./pages/Admin/Voucher";
 import CustomerList from "./pages/Admin/User/CustomerList";
@@ -48,8 +48,8 @@ import StaffList from "./pages/Admin/User/StaffList";
 import HistoryList from "./pages/Admin/History/HistoryList";
 
 // Exception
-import AccessDenied from "./pages/AccessDenied"
-import NotFound from "./pages/NotFound"
+import AccessDenied from "./pages/AccessDenied";
+import NotFound from "./pages/NotFound";
 
 // Checkout
 import MoMoCallback from "./pages/Checkout/MoMoCallback";

@@ -53,14 +53,14 @@ function BookItem({data, boxShadow}) {
           <span className={styles.price}>{format.formatPrice(newPrice)}</span>
           {discount > 0 && <span className={styles.oldPrice}>{format.formatPrice(data.price)}</span>}
         </div>
-        <div className={styles.bookDescription}>
+        {/* <div className={styles.bookDescription}>
             {
-              data.description.length >= 100 && 
+              data.description >= 100 && 
               <p>
                 {data.description.substring(0,99).replace('<p>','').replace('<strong>','').replace('</p>','').replace('</strong>','')}
               </p>
             }
-        </div>
+        </div> */}
       </div>
     </div>
   );

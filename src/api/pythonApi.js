@@ -1,9 +1,9 @@
 import axiosClient from "./axiosClient"
 
 const pythonApi = {
-    testPythonShell: ({bookname}) => {
+    testPythonShell: ({bookinfo}) => {
         const url = `pythons/nlp`
-        return axiosClient.get(url, { params: {bookname}})
+        return axiosClient.get(url, { params: {bookinfo}})
     },
 }
 
