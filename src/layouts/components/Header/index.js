@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from 'react-bootstrap';
 import { BsPerson, BsCart2 } from "react-icons/bs";
-import NavBar, { NavBarMobile } from "../NavBar";
+import NavBar, { NavBarMobile } from '../Navbar';
 import Search from "../Search";
 import authApi from "../../../api/authApi";
 import { logout } from '../../../redux/actions/auth';

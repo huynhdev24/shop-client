@@ -6,7 +6,7 @@ import { FaCheck } from "react-icons/fa"
 
 import PayItem from "../../components/Shop/PayItem";
 import AddressSelect from "../../components/AddressSelect";
-import PayPal from "../../components/PayPal"
+import PayPal from '../../components/Paypal';
 
 import { useFormik } from "formik";
 import * as Yup from "yup";

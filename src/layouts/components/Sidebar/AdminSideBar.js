@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { routes } from "./routes";
+import { routes } from './routes.js';
 import logo from '../../../assets/images/logo.png'
 import SubMenu from "./SubMenu";
 import authApi from "../../../api/authApi";

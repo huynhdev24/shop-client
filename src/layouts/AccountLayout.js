@@ -1,7 +1,7 @@
 
 import { Col, Container, Row } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
-import AccountSideBar from "./components/SideBar/AccountSideBar";
+import AccountSideBar from './components/Sidebar/AccountSideBar';
   
 import styles from "./Layout.module.css"
 

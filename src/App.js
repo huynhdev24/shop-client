@@ -61,7 +61,7 @@ import authApi from "./api/authApi";
 import { login, logout } from "./redux/actions/auth";
 import { setCart } from "./redux/actions/cart";
 
-import { roleEnum } from  "./layouts/components/SideBar/routes"
+import { roleEnum } from "./layouts/components/Sidebar/routes";
 
 function App() {
 
