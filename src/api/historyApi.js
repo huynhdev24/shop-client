@@ -1,17 +1,17 @@
-import axiosClient from "./axiosClient"
+import axiosClient from "./axiosClient";
 
 const historyApi = {
     getAll: ({page = 1, limit, sort = { createdAt: -1 }, userId}) => {
-        const url = 'history/'
-        return axiosClient.get(url, { params: {page, limit, sort, userId}})
+        const url = 'history/';
+        return axiosClient.get(url, { params: {page, limit, sort, userId}});
     },
     getById: (id) => {
-        const url = `history/${id}`
-        return axiosClient.get(url)
+        const url = `history/${id}`;
+        return axiosClient.get(url);
     },
     create: (data) => {
-        const url = `history/`
-        return axiosClient.post(url, data)
+        const url = `history/`;
+        return axiosClient.post(url, data);
     },
     update: (id, data) => {
         const url = `history/${id}`
