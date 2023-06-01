@@ -107,6 +107,20 @@ function BookList() {
     setFileCSV(fileCSV);
   };
   //end
+
+  //export CSV
+  const handleExportCSV = async () => {
+    try {
+      const res = await importCSVApi.exportBookCSV();
+      if(res.data.status === 400) {
+        toast.error('Không xuất được file Book Excel!', {autoClose: 2000})
+        return
+      }
+      toast.success("Xuất file CSV sách thành công!", {autoClose: 2000})
+    } catch (error) {
+      console.log("Xuất file CSV sách thất bại!");
+    }
+  }
   return (
     <Row>
       <Modal size="lg" show={showModal} onHide={() => setShowModal(false)}>
@@ -176,6 +190,7 @@ function BookList() {
                 //   setSearchString(searchInput)
                 //   setPage(1)
                 // }}
+                onClick={handleExportCSV}
                 >
                   <CgImport /> Xuất Excel
               </Button>

@@ -7,6 +7,10 @@ const importCSVApi = {
         const url = `import/import-book`;
         return axiosClient.post(url, data, config);
     },
+    exportBookCSV: () => {
+        const url = `import/export-book`;
+        return axiosClient.get(url);
+    }
 }
 
 export default importCSVApi;
