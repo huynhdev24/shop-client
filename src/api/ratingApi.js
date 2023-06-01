@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient"
+import axiosClient from "./axiosClient";
 
 const ratingApi = {
     getAll: ({page, limit, sortByDate}) => {
@@ -19,4 +19,4 @@ const ratingApi = {
     }
 }
 
-export default ratingApi
+export default ratingApi;

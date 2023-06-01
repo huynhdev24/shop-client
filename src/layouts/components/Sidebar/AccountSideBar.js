@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap"
+import { Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 import axios from "axios";
-import PreviewImage from  "../../../components/PreviewImage"
-import { updateAvatar } from "../../../redux/actions/auth"
+import PreviewImage from  "../../../components/PreviewImage";
+import { updateAvatar } from "../../../redux/actions/auth";
 import userApi from "../../../api/userApi";
 import styles from "./AccountSideBar.module.css";
 import { FaAddressCard, FaFileInvoiceDollar } from 'react-icons/fa';

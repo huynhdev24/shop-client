@@ -7,4 +7,4 @@ const format = {
     },
 }
 
-export default format
+export default format;

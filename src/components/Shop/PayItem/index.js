@@ -1,6 +1,6 @@
 import React from 'react';
 import format from "../../../helper/format";
-import styles from './PayItem.module.css'
+import styles from './PayItem.module.css';
 
 const PayItem = ({item, quantity, totalPriceItem}) => {
   return (
@@ -19,4 +19,4 @@ const PayItem = ({item, quantity, totalPriceItem}) => {
     </div>
   )
 }
-export default PayItem
+export default PayItem;

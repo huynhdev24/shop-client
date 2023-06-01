@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom"
-import Header from './components/Header'
-import Footer from './components/Footer'
+import { Outlet } from "react-router-dom";
+import Header from './components/Header';
+import Footer from './components/Footer';
 function DefaultLayout() {
     return (
         <>
@@ -11,4 +11,4 @@ function DefaultLayout() {
     )
 }
 
-export default DefaultLayout
+export default DefaultLayout;

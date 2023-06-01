@@ -15,4 +15,4 @@ const date = {
     },
 }
 
-export default date
+export default date;

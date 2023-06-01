@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient"
+import axiosClient from "./axiosClient";
 
 const orderApi = {
     getAll: ({page = 1, limit, sort = { createdAt: -1 }, userId}) => {
@@ -31,4 +31,4 @@ const orderApi = {
     },
 }
 
-export default orderApi
+export default orderApi;

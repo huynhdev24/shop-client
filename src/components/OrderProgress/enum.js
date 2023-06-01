@@ -7,4 +7,4 @@ const steps = [
     {code: 5, text: "Giao hàng thành công", color: "#4cb64c"},
 ]
 
-export default steps
+export default steps;

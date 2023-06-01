@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Product.module.css'
+import styles from './Product.module.css';
 
 const Product = ({item}) => {
   return (
@@ -10,4 +10,4 @@ const Product = ({item}) => {
     </div>
   )
 }
-export default Product
+export default Product;

@@ -1,7 +1,7 @@
 import { FaCheck } from "react-icons/fa";
 
-import steps from "./enum.js"
-import styles from './OrderProgress.module.css'
+import steps from "./enum.js";
+import styles from './OrderProgress.module.css';
 
 export default function OrderProgress({ current }) {
     return (

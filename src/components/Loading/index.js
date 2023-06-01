@@ -1,4 +1,4 @@
-import loading from '../../assets/images/loading-2.gif'
+import loading from '../../assets/images/loading-2.gif';
 
 import styles from './Loading.module.css';
 

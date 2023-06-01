@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 
 function PreviewImage({file, src}) {
     const [preview, setPreview] = useState({})
@@ -17,4 +17,4 @@ function PreviewImage({file, src}) {
     )
 }
 
-export default PreviewImage
+export default PreviewImage;

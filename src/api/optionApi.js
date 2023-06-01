@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient"
+import axiosClient from "./axiosClient";
 
 const optionApi = {
     getAll: () => {
@@ -7,4 +7,4 @@ const optionApi = {
     },
 }
 
-export default optionApi
+export default optionApi;

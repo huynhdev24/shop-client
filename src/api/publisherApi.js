@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient"
+import axiosClient from "./axiosClient";
 
 const publisherApi = {
     getAll: ({page, limit}) => {
@@ -7,4 +7,4 @@ const publisherApi = {
     },
 }
 
-export default publisherApi
+export default publisherApi;

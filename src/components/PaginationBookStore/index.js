@@ -1,5 +1,5 @@
-import { memo } from "react"
-import { Pagination } from "react-bootstrap"
+import { memo } from "react";
+import { Pagination } from "react-bootstrap";
 function PaginationBookStore({totalPage, currentPage, onChangePage}) {
     let items = []
 
@@ -23,4 +23,4 @@ function PaginationBookStore({totalPage, currentPage, onChangePage}) {
     )
 }
 
-export default memo(PaginationBookStore)
+export default memo(PaginationBookStore);

@@ -25,4 +25,4 @@ function AccountLayout() {
   );
 }
 
-export default AccountLayout
+export default AccountLayout;

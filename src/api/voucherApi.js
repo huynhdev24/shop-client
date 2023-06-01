@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient"
+import axiosClient from "./axiosClient";
 
 const voucherApi = {
     getAll: ({page, limit, sortByDate, valid}) => {
@@ -27,4 +27,4 @@ const voucherApi = {
     }
 }
 
-export default voucherApi
+export default voucherApi;

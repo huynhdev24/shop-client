@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient"
+import axiosClient from "./axiosClient";
 
 const userApi = {
     getAll: ({page = 1, limit, sort = { createdAt: -1 }, query = null}) => {
@@ -51,4 +51,4 @@ const userApi = {
     },
 }
 
-export default userApi
+export default userApi;
