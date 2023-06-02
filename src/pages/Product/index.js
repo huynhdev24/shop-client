@@ -29,7 +29,7 @@ export default function Product() {
         }
         setLoading(true)
         const { data, pagination } = await bookApi.getAll({
-          limit: 8,
+          limit: 16,
           page: page,
           query,
           sort: {
