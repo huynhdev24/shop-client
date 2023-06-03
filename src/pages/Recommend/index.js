@@ -1,16 +1,16 @@
 import { Container, Row, Col } from "react-bootstrap";
 import BookItem from "../../components/Shop/BookItem";
-import bookApi from "../../api/bookApi";
+// import bookApi from "../../api/bookApi";
 import pythonApi from '../../api/pythonApi';
 // eslint-disable-next-line
 import { useAsyncEffect, useEffect, useState } from "react";
 import styles from './Recommend.module.css'
 import { useSearchParams } from "react-router-dom";
 import Loading from "../../components/Loading"
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 function Recommend() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
   const bookinfo = searchParams.get('bookinfo')
