@@ -8,7 +8,7 @@ import useDebounce from "../../../hooks/useDebounce"
 import bookApi from "../../../api/bookApi"
 import styles from "./Search.module.css"
 import { Row, Col} from 'react-bootstrap';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import Icon1 from '../../../assets/icons/IconT4_F3.png';
 // import Icon2 from '../../../assets/icons/Icon_FlashSale_Hot_8px_1.png';
 // import Icon3 from '../../../assets/icons/Icon_KinhTe_8px_1.png';
@@ -19,12 +19,12 @@ import { Link } from "react-router-dom";
 // import Icon8 from '../../../assets/icons/Icon_Trending_Hot_8px_1.png';
 // import Icon9 from '../../../assets/icons/Icon_VanHoc_50.png';
 // import Icon10 from '../../../assets/icons/TamLyKyNang_50.png';
-import Cate1 from '../../../assets/categories/8935246917176.jpg';
-import Cate2 from '../../../assets/categories/Manga.jpg';
-import Cate3 from '../../../assets/categories/T_m_linh.jpg';
-import Cate4 from '../../../assets/categories/Th_c_T_nh.jpg';
-import Cate5 from '../../../assets/categories/Thao_t_ng.jpg';
-import Cate6 from '../../../assets/categories/Ti_u_Thuy_t.jpg';
+// import Cate1 from '../../../assets/categories/8935246917176.jpg';
+// import Cate2 from '../../../assets/categories/Manga.jpg';
+// import Cate3 from '../../../assets/categories/T_m_linh.jpg';
+// import Cate4 from '../../../assets/categories/Th_c_T_nh.jpg';
+// import Cate5 from '../../../assets/categories/Thao_t_ng.jpg';
+// import Cate6 from '../../../assets/categories/Ti_u_Thuy_t.jpg';
 // import Cate7 from '../../../assets/categories/_am_m_.jpg';
 // import Cate8 from '../../../assets/categories/lightnovel.jpg';
 // import Cate9 from '../../../assets/categories/8935246917176.jpg';
@@ -117,7 +117,7 @@ function Search() {
                   <Col style={{borderRight: '1px solid red'}}>
                     {searchResult.map(book => <SearchResultItem key={book._id} data={book} />)}
                   </Col>
-                  <Col className={styles.hiddenRecommend}>
+                  {/* <Col className={styles.hiddenRecommend}>
                     <p style={{margin: '10px', fontWeight: 'bold', fontSize: '20px', textAlign: 'center'}}>Các cuốn sách đề xuất cho bạn</p>
                     <Row style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
                       <Col xl={3} style={{margin: '10px'}}>
@@ -157,7 +157,7 @@ function Search() {
                         </Link>
                       </Col>
                     </Row>
-                  </Col>
+                  </Col> */}
                 </Row>
               </Container>
             </div>

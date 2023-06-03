@@ -322,7 +322,7 @@ export default function ProductDetail() {
                       <div>
                         <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleRecommend}>
                           <AiOutlineSearch className={styles.addToCartIcon} />
-                          Đề xuất
+                          Đề xuất theo mô tả sách
                         </button>
                       </div>
                       {/* Recommendation Button */}

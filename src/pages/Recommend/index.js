@@ -6,13 +6,13 @@ import pythonApi from '../../api/pythonApi';
 import { useAsyncEffect, useEffect, useState } from "react";
 import styles from './Recommend.module.css'
 import { useSearchParams } from "react-router-dom";
-import Loading from "../../components/Loading"
+import LoadingAI from "../../components/LoadingAI"
 // import { useNavigate } from 'react-router-dom';
 
 function Recommend() {
   // const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-
+  // const [loading, setLoading] = useState(false)
   const bookinfo = searchParams.get('bookinfo')
   const [books, setBooks] = useState([])
   useEffect(() => {
@@ -23,8 +23,10 @@ function Recommend() {
         try {
           const res = await pythonApi.testPythonShell({bookinfo})
           setBooks(res.listBookNLP_Final);
+          // setLoading(true)
           console.log(res);
         } catch (error) {
+          // setLoading(false)
           console.log(error)
         }
       }
@@ -40,15 +42,19 @@ function Recommend() {
             <h2 className={styles.titleHeading}>Đề xuất cho bạn</h2>
           </div>
           <Row>
-            {books ? (
-               books.map(book => 
-                <Col xl={3} key={book._id}>
-                  <BookItem boxShadow={true} data={book} />
-                </Col>)
-            ) : <div>
-                <p className={styles.notfound}>Vui lòng đợi cho quá trình Training xong!</p>
-                <Loading/>
-            </div>}
+            {
+              books ? (
+                books.map(book => 
+                  <Col xl={3} key={book._id}>
+                    <BookItem boxShadow={true} data={book} />
+                  </Col>)
+              ) : 
+                  // <div>
+                  // <p className={styles.notfound}>Vui lòng đợi cho quá trình Training xong!</p>
+                  // <Loading/>
+                  // </div>
+                  <LoadingAI/>
+            }
           </Row>
         </div>
       </Container>
