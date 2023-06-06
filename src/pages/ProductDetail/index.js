@@ -149,7 +149,7 @@ export default function ProductDetail() {
     user: userId
   });
   const [addHistoryCheckout, setAddHistoryCheckout] = useState({
-    action: 'Đặt sách' + bookDataName,
+    action: 'Đặt sách ' + bookDataName,
     type: 'Đặt sách muốn thanh toán',
     title: 'Lịch sử đặt sách',
     link: 'http://localhost:3000/chi-tiet-san-pham/' + slug,
