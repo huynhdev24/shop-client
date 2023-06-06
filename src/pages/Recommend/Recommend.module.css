@@ -42,3 +42,13 @@
 .keyword {
     font-weight: bold;
 }
+.buyBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 32px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 500; 
+    transition: all ease 0.3s;
+}

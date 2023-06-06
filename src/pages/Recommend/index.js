@@ -9,6 +9,10 @@ import { useSearchParams } from "react-router-dom";
 import LoadingAI from "../../components/LoadingAI"
 // import { useNavigate } from 'react-router-dom';
 
+//recommend Cache
+import recommendApi from '../../api/recommendApi';
+import { AiOutlineSave } from 'react-icons/ai';
+// import { toast } from 'react-toastify';
 function Recommend() {
   // const navigate = useNavigate()
   const [searchParams] = useSearchParams()
@@ -34,6 +38,23 @@ function Recommend() {
     }
   }, [bookinfo])
 
+  //recommend Cache
+  // const [recommendData, setRecommendData] = useState([])
+  const handleSaveRecommendCache = async () => {
+    try {
+      // setRecommendData();
+      // if(bookinfo === null || books === null) {
+      //   toast.error("Danh sách Training rỗng!", {autoClose: 2000})
+      //   return
+      // }
+      await recommendApi.create({productRecommendId: bookinfo, product: books});
+      // const res = await ratingApi.getAverage({user: currentUser.userId, product: bookData._id});
+      // setAverageRatings(res.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="main">
       <Container>
@@ -48,6 +69,14 @@ function Recommend() {
                   <Col xl={3} key={book._id}>
                     <BookItem boxShadow={true} data={book} />
                   </Col>)
+                  // (
+                  //   <div>
+                  //     <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleSaveRecommendCache}>
+                  //       <AiOutlineSave className={styles.buyBtn} />
+                  //       Lưu kết quả training
+                  //     </button>
+                  //   </div>
+                  // )
               ) : 
                   // <div>
                   // <p className={styles.notfound}>Vui lòng đợi cho quá trình Training xong!</p>
@@ -58,6 +87,12 @@ function Recommend() {
           </Row>
         </div>
       </Container>
+        <div>
+          <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleSaveRecommendCache}>
+            <AiOutlineSave className={styles.buyBtn} />
+            Lưu kết quả training
+          </button>
+        </div>
     </div>
   );
 }
