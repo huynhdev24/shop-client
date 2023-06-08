@@ -11,7 +11,7 @@ import LoadingAI from "../../components/LoadingAI"
 
 //recommend Cache
 import recommendApi from '../../api/recommendApi';
-import { AiOutlineSave } from 'react-icons/ai';
+// import { AiFillSave } from 'react-icons/ai';
 // import { toast } from 'react-toastify';
 function Recommend() {
   // const navigate = useNavigate()
@@ -86,13 +86,13 @@ function Recommend() {
             }
           </Row>
         </div>
-      </Container>
-        <div>
-          <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleSaveRecommendCache}>
-            <AiOutlineSave className={styles.buyBtn} />
-            Lưu kết quả training
+        <div style={{alignItems: 'center', textAlign: 'center'}}>
+          <button style={{backgroundColor: 'red', borderRadius: '4px', color: 'white', padding: '10px', fontWeight: 'bold'}} onClick={handleSaveRecommendCache}>
+            <span>Lưu kết quả training ✅</span>
+            {/* <AiFillSave style={{marginRight: '10px', height: '24px', width: '24px'}}></AiFillSave>  */}
           </button>
         </div>
+      </Container>
     </div>
   );
 }
