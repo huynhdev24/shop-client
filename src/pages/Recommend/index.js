@@ -12,7 +12,7 @@ import LoadingAI from "../../components/LoadingAI"
 //recommend Cache
 import recommendApi from '../../api/recommendApi';
 // import { AiFillSave } from 'react-icons/ai';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 function Recommend() {
   // const navigate = useNavigate()
   const [searchParams] = useSearchParams()
@@ -47,7 +47,14 @@ function Recommend() {
       //   toast.error("Danh sách Training rỗng!", {autoClose: 2000})
       //   return
       // }
-      await recommendApi.create({productRecommendId: bookinfo, product: books});
+      if(bookinfo){
+        const res = await recommendApi.create({productRecommendId: bookinfo, product: books});
+        if(res.status === 400) {
+          toast.error(res.message, {autoClose: 2000})
+        }
+      }else{
+        toast.error("Danh sách Training rỗng!", {autoClose: 2000})
+      }
       // const res = await ratingApi.getAverage({user: currentUser.userId, product: bookData._id});
       // setAverageRatings(res.data)
     } catch (error) {
