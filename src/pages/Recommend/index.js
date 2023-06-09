@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import BookItem from "../../components/Shop/BookItem";
 // import bookApi from "../../api/bookApi";
+// eslint-disable-next-line
 import pythonApi from '../../api/pythonApi';
 // eslint-disable-next-line
 import { useAsyncEffect, useEffect, useState } from "react";
@@ -25,10 +26,28 @@ function Recommend() {
       // fetchData()
       const fetchData = async () => {
         try {
-          const res = await pythonApi.testPythonShell({bookinfo})
+          // const res = await pythonApi.testPythonShell({bookinfo})
+          const id = bookinfo;
+          const res = await recommendApi.getById(id)
           setBooks(res.listBookNLP_Final);
+          // setBooks(resCheck.data.product);
+          // if(!resCheck){
+          //   const res = await pythonApi.testPythonShell({bookinfo})
+          //   setBooks(res.listBookNLP_Final);
+          //   console.log(res);
+          // }
+          // if(resCheck){
+          //   setBooks(resCheck.data.product);
+          //   // return
+          // }
+          // else{
+          //     const res = await pythonApi.testPythonShell({bookinfo})
+          //     setBooks(res.listBookNLP_Final);
+          //   // console.log(res);
+          // }
+          // setBooks(res.listBookNLP_Final);
           // setLoading(true)
-          console.log(res);
+          // console.log(res);
         } catch (error) {
           // setLoading(false)
           console.log(error)
@@ -51,6 +70,10 @@ function Recommend() {
         const res = await recommendApi.create({productRecommendId: bookinfo, product: books});
         if(res.status === 400) {
           toast.error(res.message, {autoClose: 2000})
+        }else{
+          if(res.status === 201) {
+            toast.success(res.message, {autoClose: 2000})
+          }
         }
       }else{
         toast.error("Danh sách Training rỗng!", {autoClose: 2000})
