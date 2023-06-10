@@ -6,9 +6,13 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import historyApi from '../../../api/historyApi';
 import { stripHtml } from "string-strip-html";
+import Highlighter from "react-highlight-words";
 
 export default function SearchResultItem({ data }) {
-
+  const ListTokenKeySearch = localStorage.getItem('ListTokenKeySearch');
+  const ListSearch = ListTokenKeySearch.split(' ');
+  console.log(ListTokenKeySearch.split(' '))
+  console.log([...ListTokenKeySearch])
   //handle click để lưu lại lịch sử
   const { userId } = useSelector((state) => state.auth);
   const [addHistory, setAddHistory] = useState({
@@ -42,12 +46,25 @@ export default function SearchResultItem({ data }) {
           <p>{data?.author[0]?.name}</p>
         </div>
       </div>
-      <div>
+      {/* <div>
           {
               data.description.length >= 200 && 
               <p>
                 {stripHtml(data.description.substring(0,199)).result}
               </p>
+          }
+      </div> */}
+      <div>
+          {
+              data.description.length >= 200 && 
+              <Highlighter
+                highlightClassName={styles.YourHighlightClass}
+                // className={styles.YourHighlightClass}
+                // searchWords={['truyện', 'tranh']}
+                searchWords={ListSearch}
+                autoEscape={true}
+                textToHighlight={stripHtml(data.description.substring(0,199)).result}
+              />
           }
       </div>
     </Link>

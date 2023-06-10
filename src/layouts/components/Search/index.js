@@ -58,6 +58,9 @@ function Search() {
         }
         setShowResult(true)
         console.log(res.data)
+        //localstorage
+        // const listTokenFromKeySearch = key.split(" ");
+        localStorage.setItem('ListTokenKeySearch', debounced);
       } catch (error) {
         setLoading(false)
         console.log(error)
