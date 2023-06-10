@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import historyApi from '../../../api/historyApi';
-
+// import genreApi from "../../../api/genreApi";
 function BookItem({data, boxShadow}) {
   const { price , discount } = data
+  // const { genre } = data
   let newPrice = price
   if (discount > 0) {
     newPrice = price - price * discount / 100
@@ -53,6 +54,18 @@ function BookItem({data, boxShadow}) {
           <span className={styles.price}>{format.formatPrice(newPrice)}</span>
           {discount > 0 && <span className={styles.oldPrice}>{format.formatPrice(data.price)}</span>}
         </div>
+        {/* <div style={{textAlign: 'left'}}>
+          <p>Tác giả: {data?.author[0]?.name}</p>
+        </div>
+        <div style={{textAlign: 'left'}}>
+          <p>Thể loại: {data?.genre[0]?.name}</p>
+        </div> */}
+        {/* <div>
+          <span>{genre.map( async (g) => {
+                const gen = await genreApi.getById(g);
+                return gen.data.name;
+            })}</span>
+        </div> */}
         {/* <div className={styles.bookDescription}>
             {
               data.description >= 100 && 

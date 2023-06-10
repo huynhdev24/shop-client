@@ -9,6 +9,10 @@ const genreApi = {
         const url = `genres/slug/${slug}`;
         return axiosClient.get(url);
     },
+    getById: (id) => {
+        const url = `genres/${id}`;
+        return axiosClient.get(url);
+    },
 }
 
 export default genreApi;
