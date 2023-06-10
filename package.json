@@ -19,6 +19,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-drag-drop-files": "^2.3.10",
+    "react-highlight-words": "^0.20.0",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
     "react-responsive-carousel": "^3.2.23",
