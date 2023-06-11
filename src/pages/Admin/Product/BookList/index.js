@@ -11,7 +11,7 @@ import importCSVApi from "../../../../api/importCSVApi";
 import format from "../../../../helper/format";
 // eslint-disable-next-line
 import { FileUploader } from "react-drag-drop-files";
-
+import recommendApi from "../../../../api/recommendApi";
 function BookList() {
   const [bookData, setBookData] = useState({});
   const [page, setPage] = useState(1);
@@ -112,6 +112,8 @@ function BookList() {
   const handleExportCSV = async () => {
     try {
       const res = await importCSVApi.exportBookCSV();
+      const resDelCache = await recommendApi.deleteAll();
+      console.log(resDelCache);
       if(res.data.status === 400) {
         toast.error('Không xuất được file Book Excel!', {autoClose: 2000})
         return

@@ -10,7 +10,8 @@ import { useSearchParams } from "react-router-dom";
 import LoadingAI from "../../components/LoadingAI"
 // import { useNavigate } from 'react-router-dom';
 
-//recommend Cache
+//recommend 
+// eslint-disable-next-line
 import recommendApi from '../../api/recommendApi';
 // import { AiFillSave } from 'react-icons/ai';
 import { toast } from 'react-toastify';
@@ -27,9 +28,12 @@ function Recommend() {
       const fetchData = async () => {
         try {
           // const res = await pythonApi.testPythonShell({bookinfo})
+
+          //Cách 1
           const id = bookinfo;
           const res = await recommendApi.getById(id)
           setBooks(res.listBookNLP_Final);
+
           // setBooks(resCheck.data.product);
           // if(!resCheck){
           //   const res = await pythonApi.testPythonShell({bookinfo})
@@ -45,7 +49,10 @@ function Recommend() {
           //     setBooks(res.listBookNLP_Final);
           //   // console.log(res);
           // }
+          //Cách 2
+          // const res = await pythonApi.testPythonShell({bookinfo})
           // setBooks(res.listBookNLP_Final);
+          // console.log(res);
           // setLoading(true)
           // console.log(res);
         } catch (error) {

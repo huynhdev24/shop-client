@@ -13,6 +13,10 @@ const recommendApi = {
         const url = `recommend/`
         return axiosClient.post(url, data)
     },
+    deleteAll: () => {
+        const url = `recommend/`
+        return axiosClient.delete(url);
+    }
 }
 
 export default recommendApi;
