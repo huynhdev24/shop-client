@@ -379,7 +379,7 @@ export default function ProductDetail() {
       <Container style={{marginTop: "40"}}>
         <div className={styles.booksList}>
           <div className={styles.title}>
-            <h2 className={styles.titleHeading}>Các cuốn sách liên quan chủ đề</h2>
+            <h2 className={styles.titleHeading}>Các cuốn sách liên quan đến tác giả "{bookData && format.arrayToString(bookData?.author || [])}"</h2>
           </div>
           <Row className={styles.row}>
           <Carousel showDots={true} responsive={responsive}>
@@ -398,7 +398,7 @@ export default function ProductDetail() {
       <Container style={{marginTop: "40"}}>
         <div className={styles.booksList}>
           <div className={styles.title}>
-            <h2 className={styles.titleHeading}>Các cuốn sách liên quan chủ đề</h2>
+            <h2 className={styles.titleHeading}>Các cuốn sách liên quan đến chủ đề "{bookData && format.arrayToString(bookData?.genre || [])}"</h2>
           </div>
           <Row className={styles.row}>
           <Carousel showDots={true} responsive={responsive}>
