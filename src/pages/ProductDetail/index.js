@@ -23,6 +23,7 @@ import ratingApi from '../../api/ratingApi';
 
 //pythons
 // import pythonApi from '../../api/pythonApi';
+import BookItem from '../../components/Shop/BookItem';
 
 export default function ProductDetail() {
 
@@ -72,7 +73,7 @@ export default function ProductDetail() {
     };
     fetchBook();
   }, [slug]);
-
+  //#region code
   const [quantity, setQuantity] = useState(1);
   const [fav, setFav]= useState(false);
 
@@ -234,7 +235,25 @@ export default function ProductDetail() {
       console.log(error);
     }
   }
+  //#endregion
+  
+  //#region recommend
+  const [bestBooks, setBestBooks] = useState([]);
+  useEffect(() => {
+    const fetchBestBookData = async () => {
+      try {
+        const { data } = await bookApi.getAll({page: 1, limit: 12})
+        console.log(data);
+        setBestBooks(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
+    fetchBestBookData()
+  }, [])
+
+  //#endregion
   return (
     <div className="main">
       <Container>
@@ -334,6 +353,23 @@ export default function ProductDetail() {
           <DetailedBookInfo data={bookData} /> 
         </Row> : <Loading />}
       </Container>
+      {/* Disabled UI */}
+      <Container style={{marginTop: "40"}}>
+        <div className={styles.booksList}>
+          <div className={styles.title}>
+            <h2 className={styles.titleHeading}>Các cuốn sách liên quan chủ đề</h2>
+          </div>
+          <Row className={styles.row}>
+            {bestBooks && bestBooks.length > 0 ? (
+               bestBooks.map(bestBook => 
+                <Col xl={2} xs={6} key={bestBook._id}>
+                  <BookItem data={bestBook} />
+                </Col>)
+            ) : <Loading />}
+          </Row>
+        </div>
+      </Container>
+      {/* Disabled UI */}
     </div>
   )
 }

@@ -58,9 +58,7 @@ function Home() {
 
     // const fetchBestBookData = async () => {
     //   try {
-    //     // const { data } = await bookApi.getBestProducts({page: 1, limit: 12});
-    //     const { data } = await bookApi.getSales();
-    //     // const { data } = await bookApi.getAll()
+    //     const { data } = await bookApi.getAll({page: 1, limit: 12 * 4})
     //     console.log(data);
     //     setBestBooks(data)
     //   } catch (error) {
@@ -70,21 +68,6 @@ function Home() {
 
     // fetchBestBookData()
   }, [])
-
-  // useEffect(() => {
-  //   const fetchBestBookData = async () => {
-  //     try {
-  //       const { data } = await bookApi.getBestProducts({page: 1, limit: 12});
-  //       // const { data } = await bookApi.getAll()
-  //       console.log(data);
-  //       setBestBooks(data)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-
-  //   fetchBestBookData()
-  // }, [])
   
   return (
     <div className="main">
@@ -333,10 +316,11 @@ function Home() {
           </Row>
         </div>
       </Container>
+      {/* Test */}
       {/* <Container style={{marginTop: "40"}}>
         <div className={styles.booksList}>
           <div className={styles.title}>
-            <h2 className={styles.titleHeading}>Sản phẩm bán chạy</h2>
+            <h2 className={styles.titleHeading}>Sản phẩm nổi bật</h2>
           </div>
           <Row className={styles.row}>
             {bestBooks && bestBooks.length > 0 ? (
@@ -348,6 +332,7 @@ function Home() {
           </Row>
         </div>
       </Container> */}
+      {/* Test */}
       <Container>
         <hr/>
         <Row className={styles.hiddenTracking} style={{marginTop: '28px' ,marginBottom: '28px', textAlign: 'center'}}>
