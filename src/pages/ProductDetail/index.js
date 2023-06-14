@@ -24,6 +24,8 @@ import ratingApi from '../../api/ratingApi';
 //pythons
 // import pythonApi from '../../api/pythonApi';
 import BookItem from '../../components/Shop/BookItem';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export default function ProductDetail() {
 
@@ -39,6 +41,26 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(false)
 
   let bookDataName = '';
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 1024 },
+      items: 6,
+      slidesToSlide: 1,
+    },
+    desktop: {
+      breakpoint: { max: 1024, min: 800 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 800, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   useEffect(() => {
     const addToCart = async() => {
@@ -360,12 +382,33 @@ export default function ProductDetail() {
             <h2 className={styles.titleHeading}>Các cuốn sách liên quan chủ đề</h2>
           </div>
           <Row className={styles.row}>
+          <Carousel showDots={true} responsive={responsive}>
             {bestBooks && bestBooks.length > 0 ? (
                bestBooks.map(bestBook => 
-                <Col xl={2} xs={6} key={bestBook._id}>
+                <Col xl={10} xs={6} key={bestBook._id}>
                   <BookItem data={bestBook} />
                 </Col>)
             ) : <Loading />}
+          </Carousel>
+          </Row>
+        </div>
+      </Container>
+      {/* Disabled UI */}
+      {/* Disabled UI */}
+      <Container style={{marginTop: "40"}}>
+        <div className={styles.booksList}>
+          <div className={styles.title}>
+            <h2 className={styles.titleHeading}>Các cuốn sách liên quan chủ đề</h2>
+          </div>
+          <Row className={styles.row}>
+          <Carousel showDots={true} responsive={responsive}>
+            {bestBooks && bestBooks.length > 0 ? (
+               bestBooks.map(bestBook => 
+                <Col xl={10} xs={6} key={bestBook._id}>
+                  <BookItem data={bestBook}/>
+                </Col>)
+            ) : <Loading />}
+          </Carousel>
           </Row>
         </div>
       </Container>
