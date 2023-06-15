@@ -26,6 +26,8 @@ import ratingApi from '../../api/ratingApi';
 import BookItem from '../../components/Shop/BookItem';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+// eslint-disable-next-line
+import { stripHtml } from "string-strip-html";
 
 export default function ProductDetail() {
 
@@ -260,21 +262,35 @@ export default function ProductDetail() {
   //#endregion
   
   //#region recommend
-  const [bestBooks, setBestBooks] = useState([]);
+  const [genreBooks, setGenreBooks] = useState([]);
   useEffect(() => {
-    const fetchBestBookData = async () => {
+    const fetchGenreBookData = async () => {
       try {
         const { data } = await bookApi.getAll({page: 1, limit: 12})
         console.log(data);
-        setBestBooks(data)
+        setGenreBooks(data)
       } catch (error) {
         console.log(error)
       }
     }
 
-    fetchBestBookData()
+    fetchGenreBookData()
   }, [])
 
+  const [authorBooks, setAuthorBooks] = useState([]);
+  useEffect(() => {
+    const fetchAuthorBookData = async () => {
+      try {
+        const { data } = await bookApi.getAll({page: 1, limit: 12})
+        console.log(data);
+        setAuthorBooks(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchAuthorBookData()
+  }, [])
   //#endregion
   return (
     <div className="main">
@@ -313,6 +329,9 @@ export default function ProductDetail() {
 
                   <div className={`d-flex ${styles.itemBriefing} ${styles.description}`}>
                     <div dangerouslySetInnerHTML={{__html:bookData?.description}} />
+                    {/* <div dangerouslySetInnerHTML={{__html:stripHtml(bookData.description.substring(0,199)).result}} /> */}
+                    {/* <div dangerouslySetInnerHTML={{__html:bookData.description.substring(0,999)}} /> */}
+                    {/* <span>...</span> */}
                   </div>
 
                   <div className={`d-flex ${styles.itemBriefing}`}>
@@ -383,8 +402,8 @@ export default function ProductDetail() {
           </div>
           <Row className={styles.row}>
           <Carousel showDots={true} responsive={responsive}>
-            {bestBooks && bestBooks.length > 0 ? (
-               bestBooks.map(bestBook => 
+            {genreBooks && genreBooks.length > 0 ? (
+               genreBooks.map(bestBook => 
                 <Col xl={10} xs={6} key={bestBook._id}>
                   <BookItem data={bestBook} />
                 </Col>)
@@ -402,8 +421,8 @@ export default function ProductDetail() {
           </div>
           <Row className={styles.row}>
           <Carousel showDots={true} responsive={responsive}>
-            {bestBooks && bestBooks.length > 0 ? (
-               bestBooks.map(bestBook => 
+            {authorBooks && authorBooks.length > 0 ? (
+               authorBooks.map(bestBook => 
                 <Col xl={10} xs={6} key={bestBook._id}>
                   <BookItem data={bestBook}/>
                 </Col>)
