@@ -266,7 +266,9 @@ export default function ProductDetail() {
   useEffect(() => {
     const fetchGenreBookData = async () => {
       try {
-        const { data } = await bookApi.getAll({page: 1, limit: 12})
+        // const { data } = await bookApi.getAll({page: 1, limit: 12})
+        const key = localStorage.getItem('genre')
+        const { data } = await bookApi.search({key})
         console.log(data);
         setGenreBooks(data)
       } catch (error) {
@@ -275,15 +277,31 @@ export default function ProductDetail() {
     }
 
     fetchGenreBookData()
-  }, [])
-
+  }, [bookData?.genre])
+  // function get_random (list) {
+  //   return list[Math.floor((Math.random()*list.length))];
+  // }
   const [authorBooks, setAuthorBooks] = useState([]);
   useEffect(() => {
     const fetchAuthorBookData = async () => {
       try {
-        const { data } = await bookApi.getAll({page: 1, limit: 12})
+        // const { data } = await bookApi.getAll({page: 1, limit: 12})
+        let listAuthor = {};
+        const key = localStorage.getItem('author')
+        const { data } = await bookApi.search({key})
         console.log(data);
-        setAuthorBooks(data)
+        if(data.length <= 6) {
+          // eslint-disable-next-line
+          Array.prototype.random = function () {
+            return this[Math.floor((Math.random()*this.length))];
+          }
+          const { data } = await bookApi.getAll({page: 1, limit: 12, sort : [{ createdAt: -1 },{ updatedAt: -1 }].random() })
+          listAuthor = data
+          setAuthorBooks(listAuthor)
+        }else{
+          setAuthorBooks(data)
+        }
+        // setAuthorBooks(data)
       } catch (error) {
         console.log(error)
       }
@@ -398,7 +416,7 @@ export default function ProductDetail() {
       <Container style={{marginTop: "40"}}>
         <div className={styles.booksList}>
           <div className={styles.title}>
-            <h2 className={styles.titleHeading}>Các cuốn sách liên quan đến tác giả "{bookData && format.arrayToString(bookData?.author || [])}"</h2>
+            <h2 className={styles.titleHeading}>Các cuốn sách liên quan đến chủ đề "{bookData && format.arrayToString(bookData?.genre || [])}"</h2>
           </div>
           <Row className={styles.row}>
           <Carousel showDots={true} responsive={responsive}>
@@ -417,7 +435,8 @@ export default function ProductDetail() {
       <Container style={{marginTop: "40"}}>
         <div className={styles.booksList}>
           <div className={styles.title}>
-            <h2 className={styles.titleHeading}>Các cuốn sách liên quan đến chủ đề "{bookData && format.arrayToString(bookData?.genre || [])}"</h2>
+            {/* <h2 className={styles.titleHeading}>Các cuốn sách liên quan đến tác giả "{bookData && format.arrayToString(bookData?.author || [])}"</h2> */}
+            <h2 className={styles.titleHeading}>Các cuốn sách khác của các tác giả khác có thể bạn sẽ thích</h2>
           </div>
           <Row className={styles.row}>
           <Carousel showDots={true} responsive={responsive}>
