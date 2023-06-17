@@ -8,7 +8,7 @@ import { useState } from "react";
 import historyApi from '../../../api/historyApi';
 // import genreApi from "../../../api/genreApi";
 function BookItem({data, boxShadow}) {
-  const { price , discount } = data
+  const { price , discount, author, genre } = data
   // const { genre } = data
   let newPrice = price
   if (discount > 0) {
@@ -29,13 +29,15 @@ function BookItem({data, boxShadow}) {
     e.preventDefault()
     try {
       await historyApi.create(addHistory)
+      localStorage.setItem('author', author[0].name);
+      localStorage.setItem('genre', genre[0].name);
     } catch (error) {
       setAddHistory()
       console.log(error);
     }
   }
   //end
-
+  
   return (
     <div className={`${styles.bookItem} ${boxShadow && styles.shadow}`}>
        {discount && discount > 0 ?
@@ -54,11 +56,17 @@ function BookItem({data, boxShadow}) {
           <span className={styles.price}>{format.formatPrice(newPrice)}</span>
           {discount > 0 && <span className={styles.oldPrice}>{format.formatPrice(data.price)}</span>}
         </div>
-        <div style={{textAlign: 'left'}}>
+        {/* <div style={{textAlign: 'left'}}>
           <p>Tác giả: {data?.author[0]?.name}</p>
         </div>
         <div style={{textAlign: 'left'}}>
           <p>Thể loại: {data?.genre[0]?.name}</p>
+        </div> */}
+        <div style={{textAlign: 'left'}}>
+          <p>Tác giả: {data.author?.name || data.author[0]?.name}</p>
+        </div>
+        <div style={{textAlign: 'left'}}>
+          <p>Thể loại: {data.genre?.name || data.genre[0]?.name}</p>
         </div>
         {/* <div>
           <span>{genre.map( async (g) => {
