@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import historyApi from '../../../api/historyApi';
 // import genreApi from "../../../api/genreApi";
+import BookOfficial from '../../../assets/images/book-official.png';
 function BookItem({data, boxShadow}) {
   const { price , discount, author, genre } = data
   // const { genre } = data
@@ -50,6 +51,9 @@ function BookItem({data, boxShadow}) {
         <Link to={`/chi-tiet-san-pham/${data.slug}`} className={styles.bookInfo}>
           <img variant="top" src={data.imageUrl} alt="" />
           {/* <p className={styles.name}>{data.name} - {data.author?.name || data.author[0]?.name}</p> */}
+          {data.name && data.name.includes('(Original)') ? (
+            <img style={{textAlign: 'left'}} src={BookOfficial} width='72' height='20' alt="book official"/>
+          ): null}
           <p className={styles.name}>{data.name}</p>
         </Link>
         <div className={styles.cardFooter}>
