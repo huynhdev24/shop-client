@@ -44,7 +44,11 @@ const bookApi = {
     getSales: () => {
         const url =`books/sale/`;
         return axiosClient.get(url);
-    }
+    },
+    searchNLP: ({key, limit}) => {
+        const url = `books/search`;
+        return axiosClient.get(url, { params: {key, limit}});
+    },
 }
 
 export default bookApi;

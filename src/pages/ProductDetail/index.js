@@ -262,13 +262,48 @@ export default function ProductDetail() {
   //#endregion
   
   //#region recommend
+  // eslint-disable-next-line
+  // const [titlesBooks, setTitlesBooks] = useState([]);
+  // const _titlebook = localStorage.getItem('titlebook');
+  // eslint-disable-next-line
+  // const [titleBook, setTitleBook] = useState(_titlebook);
+  const [titlesBooks, setTitlesBooks] = useState([]);
+  useEffect(() => {
+    const fetchTitleBookData = async () => {
+      try {
+        // const { data } = await bookApi.getAll({page: 1, limit: 12})
+        // const key = titleBook;
+        let listTitle = {};
+        const key = localStorage.getItem('titlebook');
+        const { data } = await bookApi.searchNLP({key})
+        console.log(data);
+        if(data.length <= 6) {
+          // eslint-disable-next-line
+          Array.prototype.random = function () {
+            return this[Math.floor((Math.random()*this.length))];
+          }
+          const { data } = await bookApi.getAll({page: 1, limit: 12, sort : [{ createdAt: -1 },{ updatedAt: -1 }].random() })
+          listTitle = data
+          setTitlesBooks(listTitle)
+        }else{
+          setTitlesBooks(data)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchTitleBookData()
+    // eslint-disable-next-line
+  }, [localStorage.getItem('titlebook')])
+  // eslint-disable-next-line
   const [genreBooks, setGenreBooks] = useState([]);
   useEffect(() => {
     const fetchGenreBookData = async () => {
       try {
         // const { data } = await bookApi.getAll({page: 1, limit: 12})
         const key = localStorage.getItem('genre')
-        const { data } = await bookApi.search({key})
+        const { data } = await bookApi.searchNLP({key})
         console.log(data);
         setGenreBooks(data)
       } catch (error) {
@@ -288,7 +323,7 @@ export default function ProductDetail() {
         // const { data } = await bookApi.getAll({page: 1, limit: 12})
         let listAuthor = {};
         const key = localStorage.getItem('author')
-        const { data } = await bookApi.search({key})
+        const { data } = await bookApi.searchNLP({key})
         console.log(data);
         if(data.length <= 6) {
           // eslint-disable-next-line
@@ -412,6 +447,25 @@ export default function ProductDetail() {
           <DetailedBookInfo data={bookData} /> 
         </Row> : <Loading />}
       </Container>
+      {/* Disabled UI */}
+      <Container style={{marginTop: "40"}}>
+        <div className={styles.booksList}>
+          <div className={styles.title}>
+            <h2 className={styles.titleHeading}>Các cuốn sách có tên liên quan</h2>
+          </div>
+          <Row className={styles.row}>
+          <Carousel showDots={true} responsive={responsive}>
+            {titlesBooks && titlesBooks.length > 0 ? (
+               titlesBooks.map(bestBook => 
+                <Col xl={10} xs={6} key={bestBook._id}>
+                  <BookItem data={bestBook} />
+                </Col>)
+            ) : <Loading />}
+          </Carousel>
+          </Row>
+        </div>
+      </Container>
+      {/* Disabled UI */}
       {/* Disabled UI */}
       <Container style={{marginTop: "40"}}>
         <div className={styles.booksList}>
