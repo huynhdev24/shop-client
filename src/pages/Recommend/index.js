@@ -7,7 +7,7 @@ import pythonApi from '../../api/pythonApi';
 import { useAsyncEffect, useEffect, useState } from "react";
 import styles from './Recommend.module.css'
 import { useSearchParams } from "react-router-dom";
-import LoadingAI from "../../components/LoadingAI"
+import Loading from "../../components/Loading"
 // import { useNavigate } from 'react-router-dom';
 
 //recommend 
@@ -119,7 +119,7 @@ function Recommend() {
                   // <p className={styles.notfound}>Vui lòng đợi cho quá trình Training xong!</p>
                   // <Loading/>
                   // </div>
-                  <LoadingAI/>
+                  <Loading/>
             }
           </Row>
         </div>
