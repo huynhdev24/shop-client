@@ -30,9 +30,9 @@ function Recommend() {
           // const res = await pythonApi.testPythonShell({bookinfo})
 
           //Cách 1
-          const id = bookinfo;
-          const res = await recommendApi.getById(id)
-          setBooks(res.listBookNLP_Final);
+          // const id = bookinfo;
+          // const res = await recommendApi.getById(id)
+          // setBooks(res.listBookNLP_Final);
 
           // setBooks(resCheck.data.product);
           // if(!resCheck){
@@ -55,6 +55,11 @@ function Recommend() {
           // console.log(res);
           // setLoading(true)
           // console.log(res);
+          
+          //Cách 3
+          const key = bookinfo;
+          const res = await recommendApi.getDataNLPById({key})
+          setBooks(res.listBookNLP_Final);
         } catch (error) {
           // setLoading(false)
           console.log(error)

@@ -16,7 +16,11 @@ const recommendApi = {
     deleteAll: () => {
         const url = `recommend/`
         return axiosClient.delete(url);
-    }
+    },
+    getDataNLPById: ({key}) => {
+        const url = `recommend/search`
+        return axiosClient.get(url, { params: {key}})
+    },
 }
 
 export default recommendApi;
