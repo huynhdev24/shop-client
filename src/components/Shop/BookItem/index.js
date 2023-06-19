@@ -7,8 +7,9 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import historyApi from '../../../api/historyApi';
 // import genreApi from "../../../api/genreApi";
+import BookOfficial from '../../../assets/images/book-official.png';
 function BookItem({data, boxShadow}) {
-  const { price , discount } = data
+  const { price , discount, author, genre } = data
   // const { genre } = data
   let newPrice = price
   if (discount > 0) {
@@ -29,13 +30,15 @@ function BookItem({data, boxShadow}) {
     e.preventDefault()
     try {
       await historyApi.create(addHistory)
+      localStorage.setItem('author', author[0].name);
+      localStorage.setItem('genre', genre[0].name);
     } catch (error) {
       setAddHistory()
       console.log(error);
     }
   }
   //end
-
+  
   return (
     <div className={`${styles.bookItem} ${boxShadow && styles.shadow}`}>
        {discount && discount > 0 ?
@@ -48,6 +51,9 @@ function BookItem({data, boxShadow}) {
         <Link to={`/chi-tiet-san-pham/${data.slug}`} className={styles.bookInfo}>
           <img variant="top" src={data.imageUrl} alt="" />
           {/* <p className={styles.name}>{data.name} - {data.author?.name || data.author[0]?.name}</p> */}
+          {data.name && data.name.includes('(Original)') ? (
+            <img style={{textAlign: 'left'}} src={BookOfficial} width='72' height='20' alt="book official"/>
+          ): null}
           <p className={styles.name}>{data.name}</p>
         </Link>
         <div className={styles.cardFooter}>
@@ -60,6 +66,12 @@ function BookItem({data, boxShadow}) {
         <div style={{textAlign: 'left'}}>
           <p>Thể loại: {data?.genre[0]?.name}</p>
         </div> */}
+        <div style={{textAlign: 'left'}}>
+          <p>Tác giả: {data.author?.name || data.author[0]?.name}</p>
+        </div>
+        <div style={{textAlign: 'left'}}>
+          <p>Thể loại: {data.genre?.name || data.genre[0]?.name}</p>
+        </div>
         {/* <div>
           <span>{genre.map( async (g) => {
                 const gen = await genreApi.getById(g);

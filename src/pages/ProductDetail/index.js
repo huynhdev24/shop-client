@@ -24,6 +24,10 @@ import ratingApi from '../../api/ratingApi';
 //pythons
 // import pythonApi from '../../api/pythonApi';
 import BookItem from '../../components/Shop/BookItem';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+// eslint-disable-next-line
+import { stripHtml } from "string-strip-html";
 
 export default function ProductDetail() {
 
@@ -39,6 +43,26 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(false)
 
   let bookDataName = '';
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 1024 },
+      items: 6,
+      slidesToSlide: 1,
+    },
+    desktop: {
+      breakpoint: { max: 1024, min: 800 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 800, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   useEffect(() => {
     const addToCart = async() => {
@@ -238,21 +262,53 @@ export default function ProductDetail() {
   //#endregion
   
   //#region recommend
-  const [bestBooks, setBestBooks] = useState([]);
+  const [genreBooks, setGenreBooks] = useState([]);
   useEffect(() => {
-    const fetchBestBookData = async () => {
+    const fetchGenreBookData = async () => {
       try {
-        const { data } = await bookApi.getAll({page: 1, limit: 12})
+        // const { data } = await bookApi.getAll({page: 1, limit: 12})
+        const key = localStorage.getItem('genre')
+        const { data } = await bookApi.search({key})
         console.log(data);
-        setBestBooks(data)
+        setGenreBooks(data)
       } catch (error) {
         console.log(error)
       }
     }
 
-    fetchBestBookData()
-  }, [])
+    fetchGenreBookData()
+  }, [bookData?.genre])
+  // function get_random (list) {
+  //   return list[Math.floor((Math.random()*list.length))];
+  // }
+  const [authorBooks, setAuthorBooks] = useState([]);
+  useEffect(() => {
+    const fetchAuthorBookData = async () => {
+      try {
+        // const { data } = await bookApi.getAll({page: 1, limit: 12})
+        let listAuthor = {};
+        const key = localStorage.getItem('author')
+        const { data } = await bookApi.search({key})
+        console.log(data);
+        if(data.length <= 6) {
+          // eslint-disable-next-line
+          Array.prototype.random = function () {
+            return this[Math.floor((Math.random()*this.length))];
+          }
+          const { data } = await bookApi.getAll({page: 1, limit: 12, sort : [{ createdAt: -1 },{ updatedAt: -1 }].random() })
+          listAuthor = data
+          setAuthorBooks(listAuthor)
+        }else{
+          setAuthorBooks(data)
+        }
+        // setAuthorBooks(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
+    fetchAuthorBookData()
+  }, [])
   //#endregion
   return (
     <div className="main">
@@ -291,6 +347,9 @@ export default function ProductDetail() {
 
                   <div className={`d-flex ${styles.itemBriefing} ${styles.description}`}>
                     <div dangerouslySetInnerHTML={{__html:bookData?.description}} />
+                    {/* <div dangerouslySetInnerHTML={{__html:stripHtml(bookData.description.substring(0,199)).result}} /> */}
+                    {/* <div dangerouslySetInnerHTML={{__html:bookData.description.substring(0,999)}} /> */}
+                    {/* <span>...</span> */}
                   </div>
 
                   <div className={`d-flex ${styles.itemBriefing}`}>
@@ -357,15 +416,37 @@ export default function ProductDetail() {
       <Container style={{marginTop: "40"}}>
         <div className={styles.booksList}>
           <div className={styles.title}>
-            <h2 className={styles.titleHeading}>Các cuốn sách liên quan chủ đề</h2>
+            <h2 className={styles.titleHeading}>Các cuốn sách liên quan đến chủ đề "{bookData && format.arrayToString(bookData?.genre || [])}"</h2>
           </div>
           <Row className={styles.row}>
-            {bestBooks && bestBooks.length > 0 ? (
-               bestBooks.map(bestBook => 
-                <Col xl={2} xs={6} key={bestBook._id}>
+          <Carousel showDots={true} responsive={responsive}>
+            {genreBooks && genreBooks.length > 0 ? (
+               genreBooks.map(bestBook => 
+                <Col xl={10} xs={6} key={bestBook._id}>
                   <BookItem data={bestBook} />
                 </Col>)
             ) : <Loading />}
+          </Carousel>
+          </Row>
+        </div>
+      </Container>
+      {/* Disabled UI */}
+      {/* Disabled UI */}
+      <Container style={{marginTop: "40"}}>
+        <div className={styles.booksList}>
+          <div className={styles.title}>
+            {/* <h2 className={styles.titleHeading}>Các cuốn sách liên quan đến tác giả "{bookData && format.arrayToString(bookData?.author || [])}"</h2> */}
+            <h2 className={styles.titleHeading}>Các cuốn sách khác của các tác giả khác có thể bạn sẽ thích</h2>
+          </div>
+          <Row className={styles.row}>
+          <Carousel showDots={true} responsive={responsive}>
+            {authorBooks && authorBooks.length > 0 ? (
+               authorBooks.map(bestBook => 
+                <Col xl={10} xs={6} key={bestBook._id}>
+                  <BookItem data={bestBook}/>
+                </Col>)
+            ) : <Loading />}
+          </Carousel>
           </Row>
         </div>
       </Container>
