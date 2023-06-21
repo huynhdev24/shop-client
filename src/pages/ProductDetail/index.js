@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineHeart, AiFillHeart, AiOutlineSearch } from 'react-icons/ai'
+// eslint-disable-next-line
 import { toast } from 'react-toastify';
 
 import DetailedBookInfo from '../../components/Shop/DetailedBookInfo'
@@ -28,7 +29,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 // eslint-disable-next-line
 import { stripHtml } from "string-strip-html";
-
+// Bowjs
+import recommendApi from '../../api/recommendApi';
 export default function ProductDetail() {
 
   const dispatch = useDispatch()
@@ -246,14 +248,14 @@ export default function ProductDetail() {
   // }
   //end
   // const [key, setKey] = useState("")
-  const handleRecommend = async () => {
+  const handleRecommend = async (limit) => {
     try {
       // let name = bookDataName;
       // await pythonApi.testPythonShell()
       navigate({
         pathname: '/de-xuat',
         // search: `bookinfo=${bookData._id}|___|${bookData.name}|___|${bookData.description}`,
-        search: `bookinfo=${bookData._id}`,
+        search: `bookinfo=${bookData._id}&limit=${limit}`,
       })
     } catch (error) {
       console.log(error);
@@ -273,21 +275,26 @@ export default function ProductDetail() {
       try {
         // const { data } = await bookApi.getAll({page: 1, limit: 12})
         // const key = titleBook;
-        let listTitle = {};
-        const key = localStorage.getItem('titlebook');
-        const { data } = await bookApi.searchNLP({key})
-        console.log(data);
-        if(data.length <= 6) {
-          // eslint-disable-next-line
-          Array.prototype.random = function () {
-            return this[Math.floor((Math.random()*this.length))];
-          }
-          const { data } = await bookApi.getAll({page: 1, limit: 12, sort : [{ createdAt: -1 },{ updatedAt: -1 }].random() })
-          listTitle = data
-          setTitlesBooks(listTitle)
-        }else{
-          setTitlesBooks(data)
-        }
+        // let listTitle = {};
+        // const key = localStorage.getItem('titlebook');
+        // const { data } = await bookApi.searchNLP({key})
+        // console.log(data);
+        // if(data.length <= 6) {
+        //   // eslint-disable-next-line
+        //   Array.prototype.random = function () {
+        //     return this[Math.floor((Math.random()*this.length))];
+        //   }
+        //   const { data } = await bookApi.getAll({page: 1, limit: 12, sort : [{ createdAt: -1 },{ updatedAt: -1 }].random() })
+        //   listTitle = data
+        //   setTitlesBooks(listTitle)
+        // }else{
+        //   setTitlesBooks(data)
+        // }
+        const key = localStorage.getItem('BOOK_ID');
+        // const limit = 12;
+        // eslint-disable-next-line
+        const res = await recommendApi.getDataNLPById({key})
+        setTitlesBooks(res.listBookNLP_Final);
       } catch (error) {
         console.log(error)
       }
@@ -433,10 +440,18 @@ export default function ProductDetail() {
                       </div>
                       {/* Recommendation Button */}
                       <div>
+                        {/* <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleRecommend(12)}>
+                          <AiOutlineSearch className={styles.addToCartIcon} />
+                          Đề xuất 12
+                        </button> */}
                         <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleRecommend}>
                           <AiOutlineSearch className={styles.addToCartIcon} />
-                          Đề xuất theo mô tả sách
+                          Đề xuất 30 cuốn
                         </button>
+                        {/* <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleRecommend(50)}>
+                          <AiOutlineSearch className={styles.addToCartIcon} />
+                          Đề xuất 50
+                        </button> */}
                       </div>
                       {/* Recommendation Button */}
                     </div>
