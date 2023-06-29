@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart, AiOutlineHeart, AiFillHeart, AiOutlineSearch } from 'react-icons/ai'
+// eslint-disable-next-line
 import { toast } from 'react-toastify';
 
 import DetailedBookInfo from '../../components/Shop/DetailedBookInfo'
@@ -28,7 +29,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 // eslint-disable-next-line
 import { stripHtml } from "string-strip-html";
-
+// Bowjs
+import recommendApi from '../../api/recommendApi';
 export default function ProductDetail() {
 
   const dispatch = useDispatch()
@@ -246,14 +248,14 @@ export default function ProductDetail() {
   // }
   //end
   // const [key, setKey] = useState("")
-  const handleRecommend = async () => {
+  const handleRecommend = async (limit) => {
     try {
       // let name = bookDataName;
       // await pythonApi.testPythonShell()
       navigate({
         pathname: '/de-xuat',
         // search: `bookinfo=${bookData._id}|___|${bookData.name}|___|${bookData.description}`,
-        search: `bookinfo=${bookData._id}`,
+        search: `bookinfo=${bookData._id}&limit=${limit}`,
       })
     } catch (error) {
       console.log(error);
@@ -262,13 +264,53 @@ export default function ProductDetail() {
   //#endregion
   
   //#region recommend
+  // eslint-disable-next-line
+  // const [titlesBooks, setTitlesBooks] = useState([]);
+  // const _titlebook = localStorage.getItem('titlebook');
+  // eslint-disable-next-line
+  // const [titleBook, setTitleBook] = useState(_titlebook);
+  const [titlesBooks, setTitlesBooks] = useState([]);
+  useEffect(() => {
+    const fetchTitleBookData = async () => {
+      try {
+        // const { data } = await bookApi.getAll({page: 1, limit: 12})
+        // const key = titleBook;
+        // let listTitle = {};
+        // const key = localStorage.getItem('titlebook');
+        // const { data } = await bookApi.searchNLP({key})
+        // console.log(data);
+        // if(data.length <= 6) {
+        //   // eslint-disable-next-line
+        //   Array.prototype.random = function () {
+        //     return this[Math.floor((Math.random()*this.length))];
+        //   }
+        //   const { data } = await bookApi.getAll({page: 1, limit: 12, sort : [{ createdAt: -1 },{ updatedAt: -1 }].random() })
+        //   listTitle = data
+        //   setTitlesBooks(listTitle)
+        // }else{
+        //   setTitlesBooks(data)
+        // }
+        const key = localStorage.getItem('BOOK_ID');
+        // const limit = 12;
+        // eslint-disable-next-line
+        const res = await recommendApi.getDataNLPById({key})
+        setTitlesBooks(res.listBookNLP_Final);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchTitleBookData()
+    // eslint-disable-next-line
+  }, [localStorage.getItem('titlebook')])
+  // eslint-disable-next-line
   const [genreBooks, setGenreBooks] = useState([]);
   useEffect(() => {
     const fetchGenreBookData = async () => {
       try {
         // const { data } = await bookApi.getAll({page: 1, limit: 12})
         const key = localStorage.getItem('genre')
-        const { data } = await bookApi.search({key})
+        const { data } = await bookApi.searchNLP({key})
         console.log(data);
         setGenreBooks(data)
       } catch (error) {
@@ -288,7 +330,7 @@ export default function ProductDetail() {
         // const { data } = await bookApi.getAll({page: 1, limit: 12})
         let listAuthor = {};
         const key = localStorage.getItem('author')
-        const { data } = await bookApi.search({key})
+        const { data } = await bookApi.searchNLP({key})
         console.log(data);
         if(data.length <= 6) {
           // eslint-disable-next-line
@@ -398,10 +440,18 @@ export default function ProductDetail() {
                       </div>
                       {/* Recommendation Button */}
                       <div>
+                        {/* <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleRecommend(12)}>
+                          <AiOutlineSearch className={styles.addToCartIcon} />
+                          Đề xuất 12
+                        </button> */}
                         <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleRecommend}>
                           <AiOutlineSearch className={styles.addToCartIcon} />
-                          Đề xuất theo mô tả sách
+                          Đề xuất 30 cuốn
                         </button>
+                        {/* <button style={{backgroundColor: 'red'}} className={styles.buyBtn} onClick={handleRecommend(50)}>
+                          <AiOutlineSearch className={styles.addToCartIcon} />
+                          Đề xuất 50
+                        </button> */}
                       </div>
                       {/* Recommendation Button */}
                     </div>
@@ -412,6 +462,25 @@ export default function ProductDetail() {
           <DetailedBookInfo data={bookData} /> 
         </Row> : <Loading />}
       </Container>
+      {/* Disabled UI */}
+      <Container style={{marginTop: "40"}}>
+        <div className={styles.booksList}>
+          <div className={styles.title}>
+            <h2 className={styles.titleHeading}>Các cuốn sách có tên liên quan</h2>
+          </div>
+          <Row className={styles.row}>
+          <Carousel showDots={true} responsive={responsive}>
+            {titlesBooks && titlesBooks.length > 0 ? (
+               titlesBooks.map(bestBook => 
+                <Col xl={10} xs={6} key={bestBook._id}>
+                  <BookItem data={bestBook} />
+                </Col>)
+            ) : <Loading />}
+          </Carousel>
+          </Row>
+        </div>
+      </Container>
+      {/* Disabled UI */}
       {/* Disabled UI */}
       <Container style={{marginTop: "40"}}>
         <div className={styles.booksList}>

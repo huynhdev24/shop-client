@@ -32,6 +32,8 @@ function BookItem({data, boxShadow}) {
       await historyApi.create(addHistory)
       localStorage.setItem('author', author[0].name);
       localStorage.setItem('genre', genre[0].name);
+      localStorage.setItem('titlebook', data.name);
+      localStorage.setItem('BOOK_ID', data._id);
     } catch (error) {
       setAddHistory()
       console.log(error);
